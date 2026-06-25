@@ -4,9 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Burnout Screening and Workplace Action Plan Tool</title>
-  <meta name="description" content="Redirect to the Burnout Screening and Workplace Action Plan Tool.">
-  <meta http-equiv="refresh" content="0; url=burnout-screening-workplace-action-plan-tool.html">
-  <link rel="canonical" href="burnout-screening-workplace-action-plan-tool.html">
+  <meta name="description" content="Burnout Screening and Workplace Action Plan Tool.">
   <style>
     body {
       margin: 0;
@@ -25,17 +23,84 @@
       background: #ffffff;
       box-shadow: 0 18px 45px rgba(30, 51, 78, 0.1);
     }
-    a {
-      color: #0d8b78;
-      font-weight: 800;
-    }
   </style>
 </head>
 <body>
   <main>
     <h1>Burnout Screening and Workplace Action Plan Tool</h1>
     <p>Opening the tool...</p>
-    <p><a href="burnout-screening-workplace-action-plan-tool.html">Click here if it does not open automatically.</a></p>
   </main>
+  <script>
+    const sourceFile = "burnout-screening-workplace-action-plan-tool.html";
+
+    fetch(sourceFile, { cache: "no-store" })
+      .then(response => {
+        if (!response.ok) throw new Error("Unable to load tool");
+        return response.text();
+      })
+      .then(html => {
+        const clarityCss = `
+          .tab-ribbon {
+            display: grid !important;
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 8px !important;
+            padding: 8px !important;
+            background: #ffffff !important;
+            border: 1px solid var(--line) !important;
+            border-radius: 8px !important;
+            box-shadow: 0 12px 28px rgba(30, 51, 78, 0.05) !important;
+          }
+          .tab-button {
+            background: #f7f9fc !important;
+            box-shadow: inset 0 -2px 0 rgba(15, 47, 95, 0.08) !important;
+          }
+          .tab-button.is-active {
+            color: #ffffff !important;
+            background: var(--green) !important;
+            border-color: var(--green) !important;
+            box-shadow: 0 8px 18px rgba(13, 139, 120, 0.18) !important;
+          }
+          .next-step-box {
+            display: grid;
+            gap: 12px;
+            margin-top: 14px;
+            padding: 16px;
+            border: 1px solid #bde7dc;
+            border-left: 4px solid var(--green);
+            border-radius: 8px;
+            background: #f0fbf8;
+          }
+          .next-step-box p {
+            margin: 0;
+            color: #174437;
+            font-weight: 700;
+          }
+        `;
+
+        html = html.replace("</style>", `<style>${clarityCss}</style></style>`);
+        html = html.replace(
+          "Use the ribbon tabs below after completing the questionnaire.",
+          "Step 1 shows your result. Step 2 opens your guided action plan and print options."
+        );
+        html = html.replace("Separate tabs", "2-step output");
+        html = html.replace(">Results</button>", ">1. Results</button>");
+        html = html.replace(">Action Plan + References</button>", ">2. Action Plan + Print</button>");
+        html = html.replace(
+          '<div class="results-grid" id="scoreCards"></div>',
+          '<div class="results-grid" id="scoreCards"></div><div class="next-step-box screen-only"><p>Next: open your guided action plan, then print or save your personal copy.</p><button class="btn green full" type="button" id="viewPlanBtn">View My Action Plan</button></div>'
+        );
+        html = html.replace(
+          'document.getElementById("calculateBtn").addEventListener("click", updateResults);',
+          'document.getElementById("calculateBtn").addEventListener("click", updateResults);\n      document.getElementById("viewPlanBtn").addEventListener("click", () => activateTab("action-references", true));'
+        );
+
+        document.open();
+        document.write(html);
+        document.close();
+      })
+      .catch(() => {
+        document.body.innerHTML = '<main><h1>Burnout Screening and Workplace Action Plan Tool</h1><p>The tool could not load. Please refresh the page.</p><p><a href="burnout-screening-workplace-action-plan-tool.html">Open direct page</a></p></main>';
+      });
+  </script>
 </body>
 </html>
