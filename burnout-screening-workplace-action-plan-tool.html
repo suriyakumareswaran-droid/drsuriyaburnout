@@ -1,0 +1,1972 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Burnout Screening and Workplace Action Plan Tool</title>
+  <meta name="description" content="A mobile-friendly individual burnout screening and workplace action plan tool using CBI domains and guideline-informed interventions.">
+  <style>
+    :root {
+      --blue: #2457a6;
+      --blue-dark: #0f2f5f;
+      --pink: #c94f7c;
+      --green: #0d8b78;
+      --green-soft: #e8f8f3;
+      --pink-soft: #fff0f6;
+      --blue-soft: #edf5ff;
+      --ink: #18293b;
+      --muted: #667589;
+      --line: #dfe7f0;
+      --paper: #ffffff;
+      --bg: #f5f7fb;
+      --warn: #a05a00;
+      --danger: #b42318;
+      --shadow: 0 18px 45px rgba(30, 51, 78, 0.1);
+      --radius: 8px;
+      --sidebar: 304px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      color-scheme: light;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(36, 87, 166, 0.06), transparent 32%),
+        linear-gradient(180deg, #ffffff 0, var(--bg) 260px),
+        var(--bg);
+      line-height: 1.55;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+
+    .app-shell {
+      display: grid;
+      grid-template-columns: var(--sidebar) minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      height: 100vh;
+      padding: 28px 20px;
+      color: #ffffff;
+      background:
+        linear-gradient(180deg, rgba(13, 139, 120, 0.2), transparent 190px),
+        linear-gradient(0deg, rgba(201, 79, 124, 0.16), transparent 220px),
+        #102e56;
+      border-right: 1px solid rgba(15, 47, 95, 0.3);
+      box-shadow: none;
+      overflow-y: auto;
+      z-index: 5;
+    }
+
+    .brand {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 22px;
+      padding: 4px 2px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.32;
+      letter-spacing: 0;
+      color: #ffffff;
+      overflow-wrap: anywhere;
+    }
+
+    .byline {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.9rem;
+    }
+
+    .byline a {
+      color: #d8fff3;
+    }
+
+    .nav-list {
+      display: grid;
+      gap: 6px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .mobile-nav {
+      display: none;
+    }
+
+    .nav-list a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 10px;
+      border-radius: 8px;
+      color: rgba(255, 255, 255, 0.86);
+      text-decoration: none;
+      border: 1px solid transparent;
+      background: transparent;
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .nav-list a:hover,
+    .nav-list a:focus {
+      outline: none;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-list a.is-active {
+      background: #ffffff;
+      color: var(--blue-dark);
+      border-color: #ffffff;
+    }
+
+    .nav-icon {
+      width: 25px;
+      height: 25px;
+      border-radius: 7px;
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+      font-size: 0.78rem;
+      flex: 0 0 auto;
+    }
+
+    .nav-icon.blue { background: var(--blue); }
+    .nav-icon.pink { background: var(--pink); }
+    .nav-icon.green { background: var(--green); }
+
+    .progress-box {
+      margin-top: 20px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+    }
+
+    .progress-bar span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--green), var(--blue), var(--pink));
+      transition: width 220ms ease;
+    }
+
+    .final-actions {
+      display: grid;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    main {
+      min-width: 0;
+      padding: 0 0 56px;
+    }
+
+    .hero {
+      min-height: 232px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      align-items: center;
+      padding: clamp(28px, 5vw, 52px) clamp(18px, 5vw, 72px);
+      border-radius: 0;
+      overflow: hidden;
+      color: var(--ink);
+      background:
+        linear-gradient(115deg, rgba(237, 245, 255, 0.96), rgba(255, 255, 255, 0.96) 54%, rgba(232, 248, 243, 0.9)),
+        #ffffff;
+      box-shadow: none;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent, rgba(201, 79, 124, 0.1) 56%, transparent 84%),
+        linear-gradient(180deg, transparent, rgba(36, 87, 166, 0.06));
+      pointer-events: none;
+    }
+
+    .hero-content {
+      width: min(100%, 1060px);
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 0.76rem;
+      letter-spacing: 0;
+      color: var(--green);
+      overflow-wrap: anywhere;
+    }
+
+    .hero h2 {
+      margin: 0;
+      font-size: clamp(1.72rem, 3.3vw, 2.32rem);
+      line-height: 1.12;
+      letter-spacing: 0;
+      max-width: 760px;
+      color: var(--blue-dark);
+      overflow-wrap: anywhere;
+      text-wrap: balance;
+    }
+
+    .hero p {
+      margin: 18px 0 0;
+      max-width: 650px;
+      font-size: clamp(0.98rem, 1.8vw, 1.14rem);
+      color: #31506d;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .tab-ribbon {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 0 0 10px;
+      margin-bottom: 22px;
+      border-radius: 8px;
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .tab-button {
+      min-height: 44px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      padding: 9px 14px;
+      background: transparent;
+      color: var(--blue-dark);
+      font: inherit;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .tab-button:hover,
+    .tab-button:focus {
+      outline: none;
+      background: var(--blue-soft);
+      border-color: #c8ddff;
+    }
+
+    .tab-button.is-active {
+      color: var(--blue-dark);
+      background: #ffffff;
+      border-color: #b7cae5;
+      box-shadow: inset 0 -3px 0 var(--green);
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.is-active {
+      display: block;
+    }
+
+    .tab-panel .section-title {
+      margin-top: 8px;
+    }
+
+    .section {
+      scroll-margin-top: 24px;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: clamp(26px, 4vw, 42px) clamp(18px, 4vw, 34px);
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: inset 0 -1px 0 rgba(120, 139, 161, 0.18);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    .section h2,
+    .section h3 {
+      margin: 0;
+      color: var(--blue-dark);
+      letter-spacing: 0;
+    }
+
+    .section h2 {
+      font-size: clamp(1.28rem, 3vw, 1.82rem);
+      line-height: 1.15;
+    }
+
+    .section h3 {
+      font-size: 1.08rem;
+    }
+
+    .section p {
+      margin: 0 0 12px;
+    }
+
+    .muted { color: var(--muted); }
+
+    .notice {
+      padding: 15px 17px;
+      border-radius: 8px;
+      border: 1px solid #c8ddff;
+      border-left: 4px solid var(--blue);
+      background: rgba(237, 245, 255, 0.76);
+    }
+
+    .notice strong { color: var(--blue-dark); }
+
+    .notice.warn {
+      border-color: #ffd89b;
+      border-left-color: #d47a00;
+      background: #fff8eb;
+      color: #623b00;
+    }
+
+    .notice.urgent {
+      border-color: #ffc9c4;
+      border-left-color: var(--danger);
+      background: #fff2f0;
+      color: var(--danger);
+    }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 32px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 240, 246, 0.76);
+      color: #833051;
+      border: 1px solid #ffd0e3;
+      font-weight: 800;
+      font-size: 0.86rem;
+    }
+
+    .pill.green {
+      background: var(--green-soft);
+      color: #0e5e4d;
+      border-color: #bde7dc;
+    }
+
+    .pill.blue {
+      background: var(--blue-soft);
+      color: var(--blue-dark);
+      border-color: #c8ddff;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    label,
+    .field-label {
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      min-height: 46px;
+      border: 1px solid #c4d0dd;
+      border-radius: 8px;
+      padding: 10px 13px;
+      color: var(--ink);
+      background: #ffffff;
+      font: inherit;
+      box-shadow: 0 1px 0 rgba(30, 51, 78, 0.02);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 92px;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: 3px solid rgba(23, 105, 224, 0.18);
+      border-color: var(--blue);
+    }
+
+    .scale-legend {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      margin: 16px 0 22px;
+    }
+
+    .scale-item {
+      padding: 10px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid var(--line);
+      min-height: 84px;
+    }
+
+    .scale-item b {
+      display: block;
+      font-size: 1.2rem;
+      color: var(--blue);
+    }
+
+    .scale-item span {
+      display: block;
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.25;
+    }
+
+    .domain-panel {
+      margin-top: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow: 0 16px 36px rgba(30, 51, 78, 0.07);
+    }
+
+    .domain-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 16px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+      box-shadow: inset 4px 0 0 var(--green);
+    }
+
+    .domain-heading h3 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .domain-tag {
+      padding: 5px 8px;
+      border-radius: 999px;
+      color: #ffffff;
+      font-size: 0.78rem;
+      font-weight: 800;
+      background: var(--green);
+      white-space: nowrap;
+    }
+
+    .question {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 320px);
+      align-items: center;
+      gap: 12px;
+      padding: 17px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .question:last-child { border-bottom: 0; }
+
+    .question-text {
+      display: grid;
+      gap: 4px;
+    }
+
+    .question-text strong {
+      font-size: 0.98rem;
+      color: var(--ink);
+    }
+
+    .question-text span {
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .answers {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(44px, 1fr));
+      gap: 8px;
+    }
+
+    .answers label {
+      min-height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      border: 1px solid #c4d0dd;
+      background: #ffffff;
+      color: var(--blue-dark);
+      cursor: pointer;
+      transition: border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .answers label:hover {
+      border-color: var(--blue);
+      background: var(--blue-soft);
+      box-shadow: 0 4px 14px rgba(36, 87, 166, 0.1);
+    }
+
+    .answers input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .answers input:checked + span {
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.26);
+    }
+
+    .answers span {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      font-size: 1.05rem;
+      font-weight: 900;
+    }
+
+    .stressors {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .check-card {
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border: 1px solid #c4d0dd;
+      border-radius: 8px;
+      background: #ffffff;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .check-card input {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--green);
+      flex: 0 0 auto;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .score-card {
+      display: grid;
+      gap: 8px;
+      min-height: 154px;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      box-shadow: 0 12px 28px rgba(30, 51, 78, 0.06);
+    }
+
+    .score-card .score {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--blue-dark);
+      line-height: 1;
+    }
+
+    .meter {
+      height: 10px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: #e7edf4;
+    }
+
+    .meter span {
+      display: block;
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--green);
+      transition: width 220ms ease;
+    }
+
+    .band {
+      display: inline-flex;
+      width: fit-content;
+      min-height: 28px;
+      align-items: center;
+      border-radius: 999px;
+      padding: 4px 9px;
+      color: #ffffff;
+      font-size: 0.82rem;
+      font-weight: 900;
+    }
+
+    .band.low { background: var(--green); }
+    .band.mild { background: var(--blue); }
+    .band.moderate { background: var(--warn); }
+    .band.high { background: var(--pink); }
+    .band.urgent { background: var(--danger); }
+
+    .action-blocks {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .action-block {
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      box-shadow: 0 12px 28px rgba(30, 51, 78, 0.05);
+    }
+
+    .action-block h3 {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 10px;
+    }
+
+    .action-block ul,
+    .references-list {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .action-block li,
+    .references-list li {
+      margin-bottom: 8px;
+    }
+
+    .btn {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      padding: 10px 15px;
+      color: #ffffff;
+      background: var(--blue);
+      font: inherit;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 8px 18px rgba(30, 51, 78, 0.12);
+    }
+
+    .btn:hover,
+    .btn:focus {
+      outline: none;
+      filter: brightness(0.96);
+    }
+
+    .btn.green { background: var(--green); }
+    .btn.pink { background: var(--pink); }
+    .btn.ghost {
+      color: var(--blue-dark);
+      background: #ffffff;
+      border-color: #b9c8d8;
+      box-shadow: none;
+    }
+
+    .btn.full { width: 100%; }
+
+    .btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+      filter: grayscale(0.1);
+    }
+
+    .inline-result {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .summary-banner {
+      display: grid;
+      gap: 8px;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #c8ddff;
+      background: #ffffff;
+      box-shadow: inset 4px 0 0 var(--blue), 0 12px 28px rgba(30, 51, 78, 0.05);
+    }
+
+    .summary-banner h3 {
+      margin: 0;
+      color: var(--blue-dark);
+      font-size: 1.1rem;
+    }
+
+    .print-report {
+      display: none;
+    }
+
+    .print-page {
+      page-break-after: always;
+    }
+
+    .print-page:last-child {
+      page-break-after: auto;
+    }
+
+    .print-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+      border-bottom: 3px solid var(--blue);
+    }
+
+    .print-header h1 {
+      margin: 0 0 4px;
+    }
+
+    .print-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .print-meta div,
+    .print-compact-box {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 10px;
+      background: #ffffff;
+    }
+
+    .print-score-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin: 10px 0;
+    }
+
+    .print-score {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 9px;
+      background: #ffffff;
+    }
+
+    .print-score strong {
+      display: block;
+      font-size: 1.55rem;
+      color: var(--blue-dark);
+      line-height: 1;
+      margin: 4px 0;
+    }
+
+    .print-columns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .print-list {
+      margin: 6px 0 0;
+      padding-left: 18px;
+    }
+
+    .print-list li {
+      margin-bottom: 5px;
+    }
+
+    .print-small {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-note {
+      max-width: 1080px;
+      margin: 22px auto 0;
+      padding: 0 clamp(18px, 4vw, 34px);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 1000px) {
+      .app-shell {
+        display: block;
+      }
+
+      .sidebar {
+        height: auto;
+        position: static;
+        padding: 14px 12px 16px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+        box-shadow: 0 10px 26px rgba(30, 51, 78, 0.16);
+        overflow: visible;
+      }
+
+      .brand {
+        display: block;
+        margin-bottom: 10px;
+        padding: 0 0 12px;
+        min-width: 0;
+      }
+
+      .brand h1 {
+        font-size: 0.96rem;
+      }
+
+      .byline {
+        grid-column: 1 / -1;
+        font-size: 0.82rem;
+      }
+
+      .nav-list {
+        display: none;
+      }
+
+      .mobile-nav {
+        display: grid;
+        gap: 6px;
+        margin: 12px 0 10px;
+      }
+
+      .mobile-nav label {
+        color: rgba(255, 255, 255, 0.86);
+        font-size: 0.78rem;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .mobile-nav select {
+        width: 100%;
+        min-height: 46px;
+        border: 1px solid rgba(255, 255, 255, 0.32);
+        border-radius: 8px;
+        padding: 0 38px 0 12px;
+        color: var(--blue-dark);
+        background-color: #ffffff;
+        font: inherit;
+        font-weight: 800;
+        box-shadow: 0 10px 22px rgba(10, 33, 62, 0.16);
+      }
+
+      .progress-box {
+        display: none;
+      }
+
+      .final-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 10px;
+      }
+
+      main {
+        padding: 0 0 40px;
+      }
+
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        padding: 28px 18px 30px;
+      }
+
+      .eyebrow {
+        font-size: 0.74rem;
+      }
+
+      .hero h2 {
+        font-size: 1.95rem;
+      }
+
+      .section {
+        padding: 28px 18px;
+      }
+
+      .question {
+        grid-template-columns: 1fr;
+      }
+
+      .grid.two,
+      .grid.three,
+      .results-grid,
+      .action-blocks {
+        grid-template-columns: 1fr;
+      }
+
+      .stressors {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .section {
+        padding: 24px 14px;
+        margin-top: 0;
+      }
+
+      .hero h2 {
+        font-size: 1.48rem;
+        line-height: 1.15;
+      }
+
+      .section-title {
+        display: grid;
+        gap: 10px;
+      }
+
+      .scale-legend {
+        grid-template-columns: 1fr;
+      }
+
+      .scale-item {
+        min-height: auto;
+      }
+
+      .answers {
+        grid-template-columns: repeat(5, minmax(40px, 1fr));
+        gap: 6px;
+      }
+
+      .answers label {
+        min-height: 44px;
+      }
+
+      .domain-heading {
+        align-items: flex-start;
+        display: grid;
+      }
+
+      .question {
+        padding: 16px 14px;
+      }
+
+      .stressors {
+        grid-template-columns: 1fr;
+      }
+
+      .final-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        display: grid;
+      }
+
+      .tab-ribbon {
+        display: grid;
+      }
+
+      .tab-button {
+        width: 100%;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    @media print {
+      @page {
+        size: A4;
+        margin: 14mm;
+      }
+
+      body {
+        background: #ffffff;
+        color: #000000;
+        font-size: 9.5pt;
+        line-height: 1.35;
+      }
+
+      .sidebar,
+      .hero,
+      .screen-only,
+      .final-actions,
+      .btn,
+      .questionnaire-screen,
+      main > .section:not(.print-report),
+      .footer-note {
+        display: none !important;
+      }
+
+      .app-shell,
+      main {
+        display: block;
+        padding: 0;
+      }
+
+      .section {
+        box-shadow: none;
+        border: 0;
+        margin: 0 0 12px;
+        padding: 0;
+        page-break-inside: avoid;
+      }
+
+      .print-report {
+        display: block;
+      }
+
+      .print-report h1 {
+        font-size: 17pt;
+        margin: 0 0 4px;
+      }
+
+      .print-report h2 {
+        font-size: 12pt;
+        margin: 0 0 8px;
+        color: #0c387b;
+      }
+
+      .print-report h3 {
+        font-size: 10.5pt;
+        margin: 0 0 5px;
+      }
+
+      .print-report p {
+        margin: 0 0 7px;
+      }
+
+      .print-page {
+        min-height: 250mm;
+        page-break-after: always;
+      }
+
+      .print-page:last-child {
+        page-break-after: auto;
+      }
+
+      .results-grid,
+      .action-blocks,
+      .grid.two {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .score-card,
+      .action-block,
+      .summary-banner,
+      .notice {
+        border: 1px solid #999999;
+        box-shadow: none;
+        background: #ffffff !important;
+      }
+
+      .print-meta,
+      .print-score-grid,
+      .print-columns {
+        display: grid;
+      }
+
+      .print-meta {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .print-score-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .print-columns {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .print-compact-box,
+      .print-score {
+        page-break-inside: avoid;
+      }
+
+      a {
+        color: #000000;
+        text-decoration: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Tool navigation">
+      <div class="brand">
+        <h1>Burnout Screening and Workplace Action Plan Tool</h1>
+        <p class="byline">Created by Dr Suriya Kumareswaran<br><a href="mailto:dr.suriya@moh.gov.my">dr.suriya@moh.gov.my</a></p>
+      </div>
+
+      <nav>
+        <div class="mobile-nav screen-only">
+          <label for="mobileNav">Go to section</label>
+          <select id="mobileNav" aria-label="Go to section">
+            <option value="#start">Start</option>
+            <option value="#about">Explanation</option>
+            <option value="#screening">Questionnaire</option>
+            <option value="#stressors">Stressors</option>
+            <option value="tab:results">Results</option>
+            <option value="tab:action-references">Action Plan + References</option>
+          </select>
+        </div>
+
+        <ul class="nav-list">
+          <li><a class="is-active" href="#start"><span class="nav-icon blue">1</span> Start</a></li>
+          <li><a href="#about"><span class="nav-icon green">2</span> Explanation</a></li>
+          <li><a href="#screening"><span class="nav-icon pink">3</span> Questionnaire</a></li>
+          <li><a href="#stressors"><span class="nav-icon blue">4</span> Stressors</a></li>
+          <li><a href="#output-tabs" data-tab-link="results"><span class="nav-icon green">5</span> Results</a></li>
+          <li><a href="#output-tabs" data-tab-link="action-references"><span class="nav-icon pink">6</span> Plan + References</a></li>
+        </ul>
+      </nav>
+
+      <div class="progress-box">
+        <div class="progress-label"><span>Question progress</span><span id="progressText">0/19</span></div>
+        <div class="progress-bar" aria-hidden="true"><span id="progressFill"></span></div>
+      </div>
+
+    </aside>
+
+    <main>
+      <section class="hero" id="start">
+        <div class="hero-content">
+          <p class="eyebrow">Individual non-diagnostic tool</p>
+          <h2>Burnout Screening and Workplace Action Plan Tool</h2>
+          <div class="hero-actions">
+            <a class="btn green" href="#screening">Start Questionnaire</a>
+            <a class="btn ghost" href="#about">Read Before Use</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="section-title">
+          <div>
+            <h2>Before You Use This Tool</h2>
+            <p class="muted">This is for individual screening, workplace health education, and guided action planning.</p>
+          </div>
+          <span class="pill blue">Not a diagnosis</span>
+        </div>
+
+        <div class="grid two">
+          <div class="notice">
+            <p><strong>Purpose.</strong> This tool helps you reflect on burnout-related symptoms across personal, work-related, and client or patient-related domains. It is designed for personal use and workplace support discussion.</p>
+            <p><strong>Important limitation.</strong> It does not diagnose burnout, depression, anxiety, or any psychiatric condition. WHO describes burnout as an occupational phenomenon linked to chronic workplace stress that has not been successfully managed.</p>
+          </div>
+          <div class="notice warn">
+            <p><strong>Safety first.</strong> If you have thoughts of self-harm, severe distress, panic symptoms, major functional impairment, workplace violence, bullying, harassment, or traumatic exposure, seek prompt help from a qualified healthcare professional, nearest Emergency Department, Klinik Kesihatan, occupational health service, or local emergency services.</p>
+          </div>
+        </div>
+
+        <div class="pill-row">
+          <span class="pill blue">CBI domains</span>
+          <span class="pill green">WHO mental health at work</span>
+          <span class="pill">DOSH PRiSMA 2024</span>
+          <span class="pill green">NICE NG212</span>
+        </div>
+      </section>
+
+      <section class="section" id="user-details">
+        <div class="section-title">
+          <div>
+            <h2>Personal Details for Printout</h2>
+            <p class="muted">Name is optional. Leave it blank if you prefer an anonymous copy.</p>
+          </div>
+        </div>
+        <div class="grid three">
+          <div class="field">
+            <label for="userName">Name / Nama</label>
+            <input type="text" id="userName" autocomplete="name" placeholder="Optional">
+          </div>
+          <div class="field">
+            <label for="userRole">Work role / Peranan kerja</label>
+            <input type="text" id="userRole" placeholder="Optional">
+          </div>
+          <div class="field">
+            <label for="screeningDate">Date / Tarikh</label>
+            <input type="date" id="screeningDate">
+          </div>
+        </div>
+      </section>
+
+      <section class="section questionnaire-screen" id="screening">
+        <div class="section-title">
+          <div>
+            <h2>Burnout Questionnaire</h2>
+            <p class="muted">Choose one score for every question. The score updates automatically after all 19 questions are answered.</p>
+          </div>
+          <span class="pill green">Tap friendly</span>
+        </div>
+
+        <div class="scale-legend" aria-label="Response scale">
+          <div class="scale-item"><b>1</b><span>To a Very Low Degree<br>Tahap Sangat Rendah</span></div>
+          <div class="scale-item"><b>2</b><span>To a Low Degree<br>Tahap Rendah</span></div>
+          <div class="scale-item"><b>3</b><span>Somewhat High<br>Kadang Tinggi</span></div>
+          <div class="scale-item"><b>4</b><span>To a High Degree<br>Tahap Tinggi</span></div>
+          <div class="scale-item"><b>5</b><span>To a Very High Degree<br>Tahap Sangat Tinggi</span></div>
+        </div>
+
+        <div id="questionnaire"></div>
+      </section>
+
+      <section class="section" id="stressors">
+        <div class="section-title">
+          <div>
+            <h2>Work Stressor Mapping</h2>
+            <p class="muted">Select the main workplace contributors. These help tailor the action plan.</p>
+          </div>
+          <span class="pill blue">Guideline informed</span>
+        </div>
+        <div class="stressors" id="stressorList"></div>
+
+        <div class="grid two" style="margin-top: 16px;">
+          <div class="field">
+            <label for="impairment">Functional impact / Kesan fungsi</label>
+            <select id="impairment">
+              <option value="none">None / Tiada</option>
+              <option value="mild">Mild / Ringan</option>
+              <option value="moderate">Moderate / Sederhana</option>
+              <option value="severe">Severe - cannot function well / Teruk</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="selfHarm">Self-harm thoughts / Fikiran mencederakan diri</label>
+            <select id="selfHarm">
+              <option value="no">No / Tidak</option>
+              <option value="yes">Yes / Ya</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field" style="margin-top: 16px;">
+          <label for="notes">Optional personal notes / Nota pilihan</label>
+          <textarea id="notes" placeholder="Write anything you want to remember for your own action plan."></textarea>
+        </div>
+      </section>
+
+      <section class="section" id="output-tabs">
+        <div class="section-title">
+          <div>
+            <h2>Results and Action Plan</h2>
+            <p class="muted">Use the ribbon tabs below after completing the questionnaire.</p>
+          </div>
+          <span class="pill green">Separate tabs</span>
+        </div>
+
+        <div class="tab-ribbon screen-only" role="tablist" aria-label="Results and action plan tabs">
+          <button class="tab-button is-active" type="button" id="tab-results" role="tab" aria-selected="true" aria-controls="results" data-tab-target="results">Results</button>
+          <button class="tab-button" type="button" id="tab-action-references" role="tab" aria-selected="false" aria-controls="action-references" data-tab-target="action-references">Action Plan + References</button>
+        </div>
+
+        <section class="tab-panel is-active" id="results" role="tabpanel" aria-labelledby="tab-results" data-tab-panel="results">
+          <div class="section-title">
+            <div>
+              <h2>Automated Result</h2>
+              <p class="muted">Scores are converted to 0-100 by CBI-style scoring. These action bands are for planning, not diagnosis.</p>
+            </div>
+            <button class="btn green screen-only" type="button" id="calculateBtn">Calculate Now</button>
+          </div>
+
+          <div id="completionNotice" class="notice warn">
+            Answer all 19 questions to generate your result and action plan.
+          </div>
+
+          <div class="inline-result" id="resultArea" hidden>
+            <div class="summary-banner">
+              <h3 id="overallTitle">Overall priority</h3>
+              <p id="overallText"></p>
+            </div>
+            <div class="results-grid" id="scoreCards"></div>
+          </div>
+        </section>
+
+        <section class="tab-panel" id="action-references" role="tabpanel" aria-labelledby="tab-action-references" data-tab-panel="action-references">
+          <div id="plan">
+            <div class="section-title">
+              <div>
+                <h2>Guided Workplace Action Plan</h2>
+                <p class="muted">The plan combines individual recovery steps with supervisor and workplace controls where relevant.</p>
+              </div>
+              <span class="pill">Print ready</span>
+            </div>
+            <div id="planArea" class="notice">
+              Complete the questionnaire to generate a tailored action plan.
+            </div>
+          </div>
+
+          <div class="notice screen-only" style="margin-top: 24px;">
+            Complete all 19 questions, review your result and action plan, then print or save your personal copy.
+          </div>
+          <div class="final-actions screen-only">
+            <button class="btn green full" type="button" id="printBtn" disabled>Print / Save PDF</button>
+            <button class="btn pink full" type="button" id="resetBtn">Reset</button>
+          </div>
+
+          <div id="references" style="margin-top: 24px;">
+            <div class="section-title">
+              <div>
+                <h2>References</h2>
+                <p class="muted">References used to structure the screening explanation, scoring, and workplace action planning. Accessed 25 June 2026.</p>
+              </div>
+            </div>
+            <ol class="references-list">
+              <li>World Health Organization. <a href="https://www.who.int/standards/classifications/frequently-asked-questions/burn-out-an-occupational-phenomenon" target="_blank" rel="noopener">Burn-out an occupational phenomenon: ICD-11</a>. WHO states burnout is included as an occupational phenomenon and is not classified as a medical condition.</li>
+              <li>Ministry of Health Malaysia self-test page. <a href="https://mentari.moh.gov.my/self-test/" target="_blank" rel="noopener">Copenhagen Burnout Inventory (CBI)</a>. The page lists CBI as a self-test for identifying magnitude and types of burnout among staff.</li>
+              <li>Department of Occupational Safety and Health Malaysia. <a href="https://intranet.dosh.gov.my/competent-person-form/occupational-health/regulation-2-1/guidelines/occupational-health-1/4850-guidelines-on-psychosocial-risk-assessment-and-management-at-the-workplace-2024" target="_blank" rel="noopener">Guidelines on Psychosocial Risk Assessment and Management at the Workplace 2024</a>. Published 4 November 2024.</li>
+              <li>World Health Organization. <a href="https://www.who.int/news-room/fact-sheets/detail/mental-health-at-work" target="_blank" rel="noopener">Mental health at work</a>. Includes organisational interventions, manager training, worker training, reasonable accommodation, and return-to-work support.</li>
+              <li>National Institute for Health and Care Excellence. <a href="https://www.nice.org.uk/guidance/ng212/chapter/Recommendations" target="_blank" rel="noopener">NG212 Mental wellbeing at work: recommendations</a>. Covers prevention, supportive work environments, manager involvement, communication, and organisational approaches.</li>
+              <li>Kristensen TS, Borritz M, Villadsen E, Christensen KB. <a href="https://nfa.dk/media/hl5nbers/cbi-first-edition.pdf" target="_blank" rel="noopener">The Copenhagen Burnout Inventory: A new tool for the assessment of burnout</a>. National Research Centre for the Working Environment. The CBI uses personal, work-related, and client-related burnout scales; the family/friends energy item is reverse scored.</li>
+              <li>International Organization for Standardization. <a href="https://www.iso.org/standard/64283.html" target="_blank" rel="noopener">ISO 45003:2021 Psychological health and safety at work</a>. Provides guidance for managing psychosocial risk within an occupational health and safety management system.</li>
+              <li>World Health Organization and International Labour Organization. <a href="https://www.who.int/publications/i/item/9789240057944" target="_blank" rel="noopener">Mental health at work: policy brief</a>. Provides practical actions for prevention of psychosocial risks, promotion of mental health, and support for workers.</li>
+            </ol>
+          </div>
+        </section>
+      </section>
+
+      <section class="section print-report" id="printReport" aria-label="Printable report"></section>
+
+      <p class="footer-note">This tool is an individual support aid. It should complement, not replace, employer psychosocial risk assessment processes, occupational health advice, or professional healthcare assessment.</p>
+    </main>
+  </div>
+
+  <script>
+    const domains = [
+      {
+        id: "personal",
+        title: "Part 1 - Personal Burnout",
+        tag: "General exhaustion",
+        questions: [
+          ["How often do you feel tired?", "Berapa kerap anda berasa letih?"],
+          ["How often are you physically exhausted?", "Berapa kerap anda berasa letih secara fizikal?"],
+          ["How often are you emotionally exhausted?", "Berapa kerap anda berasa letih secara emosi?"],
+          ["How often do you think: I cannot take it anymore?", "Berapa kerap anda berfikir: Saya sudah tidak sanggup meneruskannya?"],
+          ["How often do you feel worn out?", "Berapa kerap anda berasa lesu?"],
+          ["How often do you feel weak and susceptible to illness?", "Berapa kerap anda berasa lemah dan mudah mendapat penyakit?"]
+        ]
+      },
+      {
+        id: "work",
+        title: "Part 2 - Work-Related Burnout",
+        tag: "Work stress link",
+        questions: [
+          ["Is your work emotionally exhausting?", "Adakah kerja anda meletihkan emosi anda?"],
+          ["Do you feel burned out because of your work?", "Adakah anda berasa lesu upaya disebabkan pekerjaan anda?"],
+          ["Does your work frustrate you?", "Adakah anda berasa kecewa dengan pekerjaan anda?"],
+          ["Do you feel worn out at the end of the working day?", "Adakah anda berasa lesu pada akhir hari bekerja?"],
+          ["Are you exhausted in the morning at the thought of another day at work?", "Adakah anda keletihan pada waktu pagi apabila memikirkan sehari lagi di tempat kerja?"],
+          ["Do you feel that every working hour is tiring for you?", "Adakah anda berasa setiap waktu bekerja memenatkan anda?"],
+          ["Do you have enough energy for family and friends during leisure time?", "Adakah anda mempunyai tenaga yang cukup untuk meluangkan masa bersama keluarga dan rakan-rakan ketika masa lapang?", true]
+        ]
+      },
+      {
+        id: "client",
+        title: "Part 3 - Client / Patient-Related Burnout",
+        tag: "People-facing demand",
+        questions: [
+          ["Do you find it hard to work with clients, patients, or the public?", "Adakah anda mengalami kesukaran untuk berurusan dengan klien, pesakit, atau orang awam?"],
+          ["Do you find it frustrating to work with clients, patients, or the public?", "Adakah anda berasa berurusan dengan klien, pesakit, atau orang awam mengecewakan?"],
+          ["Does it drain your energy to work with clients, patients, or the public?", "Adakah bekerja dengan klien, pesakit, atau orang awam menghabiskan tenaga anda?"],
+          ["Do you feel that you give more than you get back when working with clients, patients, or the public?", "Apabila bekerja dengan klien, pesakit, atau orang awam, adakah anda berasa lebih banyak memberi daripada menerima?"],
+          ["Are you tired of working with clients, patients, or the public?", "Adakah anda bosan bekerja dengan klien, pesakit, atau orang awam?"],
+          ["Do you sometimes wonder how long you will be able to continue working with clients, patients, or the public?", "Adakah anda tertanya-tanya sejauh mana anda mampu meneruskan urusan dengan klien, pesakit, atau orang awam?"]
+        ]
+      }
+    ];
+
+    const stressors = [
+      "Workload",
+      "Lack of control",
+      "Poor supervisor support",
+      "Role conflict or unclear role",
+      "Shift work or overtime",
+      "Bullying, harassment, or violence",
+      "High emotional demand",
+      "Poor recognition",
+      "Work-life conflict",
+      "Training or skill gap",
+      "Poor communication",
+      "Physical work environment"
+    ];
+
+    const state = {
+      answers: {},
+      stressors: [],
+      scores: null
+    };
+
+    const scaleToScore = value => (Number(value) - 1) * 25;
+    const reverseScaleToScore = value => (5 - Number(value)) * 25;
+
+    function bandFor(score) {
+      if (score >= 75) return { key: "high", label: "High", followUp: "1-2 weeks" };
+      if (score >= 50) return { key: "moderate", label: "Moderate", followUp: "2-4 weeks" };
+      if (score >= 25) return { key: "mild", label: "Mild / Early", followUp: "4 weeks" };
+      return { key: "low", label: "Low", followUp: "3-6 months" };
+    }
+
+    function renderQuestionnaire() {
+      const wrapper = document.getElementById("questionnaire");
+      wrapper.innerHTML = domains.map(domain => `
+        <section class="domain-panel" aria-labelledby="${domain.id}-title">
+          <div class="domain-heading">
+            <h3 id="${domain.id}-title"><span class="nav-icon ${domain.id === "personal" ? "blue" : domain.id === "work" ? "green" : "pink"}">${domain.id === "personal" ? "P" : domain.id === "work" ? "W" : "C"}</span>${domain.title}</h3>
+            <span class="domain-tag">${domain.tag}</span>
+          </div>
+          ${domain.questions.map((q, index) => {
+            const qid = `${domain.id}_${index}`;
+            return `
+              <div class="question">
+                <div class="question-text">
+                  <strong>${q[0]}*</strong>
+                  <span>${q[1]}</span>
+                  ${q[2] ? '<span class="muted">This positive item is reverse scored.</span>' : ''}
+                </div>
+                <div class="answers" role="radiogroup" aria-label="${q[0]}">
+                  ${[1, 2, 3, 4, 5].map(value => `
+                    <label>
+                      <input type="radio" name="${qid}" value="${value}" data-domain="${domain.id}" data-qid="${qid}" data-reverse="${q[2] ? "true" : "false"}">
+                      <span>${value}</span>
+                    </label>
+                  `).join("")}
+                </div>
+              </div>
+            `;
+          }).join("")}
+        </section>
+      `).join("");
+    }
+
+    function renderStressors() {
+      document.getElementById("stressorList").innerHTML = stressors.map((item, index) => `
+        <label class="check-card">
+          <input type="checkbox" value="${item}" id="stressor_${index}">
+          <span>${item}</span>
+        </label>
+      `).join("");
+    }
+
+    function loadSavedState() {
+      const saved = localStorage.getItem("burnoutToolState");
+      if (!saved) return;
+      try {
+        const parsed = JSON.parse(saved);
+        Object.assign(state, parsed);
+        Object.entries(state.answers || {}).forEach(([qid, value]) => {
+          const input = document.querySelector(`input[name="${qid}"][value="${value}"]`);
+          if (input) input.checked = true;
+        });
+        (state.stressors || []).forEach(item => {
+          const input = Array.from(document.querySelectorAll("#stressorList input")).find(el => el.value === item);
+          if (input) input.checked = true;
+        });
+        ["userName", "userRole", "screeningDate", "impairment", "selfHarm", "notes"].forEach(id => {
+          if (parsed[id] !== undefined) document.getElementById(id).value = parsed[id];
+        });
+      } catch (error) {
+        localStorage.removeItem("burnoutToolState");
+      }
+    }
+
+    function saveState() {
+      const details = {};
+      ["userName", "userRole", "screeningDate", "impairment", "selfHarm", "notes"].forEach(id => {
+        details[id] = document.getElementById(id).value;
+      });
+      localStorage.setItem("burnoutToolState", JSON.stringify({
+        ...details,
+        answers: state.answers,
+        stressors: state.stressors
+      }));
+    }
+
+    function totalQuestions() {
+      return domains.reduce((sum, domain) => sum + domain.questions.length, 0);
+    }
+
+    function updateProgress() {
+      const answered = Object.keys(state.answers).length;
+      const total = totalQuestions();
+      const percent = Math.round((answered / total) * 100);
+      document.getElementById("progressText").textContent = `${answered}/${total}`;
+      document.getElementById("progressFill").style.width = `${percent}%`;
+    }
+
+    function calculateScores() {
+      const domainScores = {};
+      domains.forEach(domain => {
+        const scores = domain.questions.map((q, index) => {
+          const qid = `${domain.id}_${index}`;
+          const input = document.querySelector(`input[name="${qid}"]:checked`);
+          if (!input) return null;
+          return input.dataset.reverse === "true" ? reverseScaleToScore(input.value) : scaleToScore(input.value);
+        });
+        if (scores.includes(null)) {
+          domainScores[domain.id] = null;
+        } else {
+          domainScores[domain.id] = Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
+        }
+      });
+
+      const complete = Object.values(domainScores).every(score => score !== null);
+      if (!complete) return null;
+
+      const maxScore = Math.max(...Object.values(domainScores));
+      const highestDomain = Object.entries(domainScores).sort((a, b) => b[1] - a[1])[0][0];
+      const impairment = document.getElementById("impairment").value;
+      const selfHarm = document.getElementById("selfHarm").value;
+      const bullying = state.stressors.some(s => s.includes("Bullying"));
+      const urgent = selfHarm === "yes" || impairment === "severe";
+      const overallBand = urgent ? { key: "urgent", label: "Urgent support", followUp: "Immediate" } : bandFor(maxScore);
+
+      return {
+        domainScores,
+        maxScore,
+        highestDomain,
+        impairment,
+        selfHarm,
+        bullying,
+        urgent,
+        overallBand
+      };
+    }
+
+    function domainLabel(id) {
+      return {
+        personal: "Personal burnout",
+        work: "Work-related burnout",
+        client: "Client / patient-related burnout"
+      }[id];
+    }
+
+    function updateResults() {
+      state.scores = calculateScores();
+      updateProgress();
+      saveState();
+      const completeNotice = document.getElementById("completionNotice");
+      const resultArea = document.getElementById("resultArea");
+      const planArea = document.getElementById("planArea");
+      const printBtn = document.getElementById("printBtn");
+
+      if (!state.scores) {
+        printBtn.disabled = true;
+        completeNotice.hidden = false;
+        resultArea.hidden = true;
+        planArea.className = "notice";
+        planArea.innerHTML = "Complete the questionnaire to generate a tailored action plan.";
+        updatePrintReport();
+        return;
+      }
+
+      printBtn.disabled = false;
+      completeNotice.hidden = true;
+      resultArea.hidden = false;
+      const { domainScores, highestDomain, overallBand, urgent } = state.scores;
+      document.getElementById("overallTitle").innerHTML = `Overall priority: <span class="band ${overallBand.key}">${overallBand.label}</span>`;
+      document.getElementById("overallText").textContent = urgent
+        ? "Urgent support is recommended because a safety or severe functional concern was selected. This tool cannot manage crisis or safety concerns."
+        : `Main concern: ${domainLabel(highestDomain)}. Your result suggests ${overallBand.label.toLowerCase()} burnout-related symptoms. This is not a diagnosis.`;
+
+      document.getElementById("scoreCards").innerHTML = Object.entries(domainScores).map(([id, score]) => {
+        const band = bandFor(score);
+        return `
+          <article class="score-card">
+            <h3>${domainLabel(id)}</h3>
+            <div class="score">${score}</div>
+            <div class="meter" aria-hidden="true"><span style="width:${score}%; background:${band.key === "high" ? "var(--pink)" : band.key === "moderate" ? "var(--warn)" : band.key === "mild" ? "var(--blue)" : "var(--green)"}"></span></div>
+            <span class="band ${band.key}">${band.label}</span>
+          </article>
+        `;
+      }).join("");
+
+      renderActionPlan();
+      updatePrintReport();
+    }
+
+    function renderActionPlan() {
+      const plan = buildActionPlan();
+      const planArea = document.getElementById("planArea");
+      planArea.className = "";
+      planArea.innerHTML = `
+        <div class="action-blocks">
+          ${plan.map(block => `
+            <article class="action-block">
+              <h3><span class="nav-icon ${block.color}">${block.icon}</span>${block.title}</h3>
+              <ul>${block.items.map(item => `<li>${item}</li>`).join("")}</ul>
+            </article>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function buildActionPlan() {
+      if (!state.scores) return [];
+      const selected = state.stressors;
+      const { domainScores, highestDomain, overallBand, urgent, bullying, impairment } = state.scores;
+      const blocks = [];
+
+      if (urgent) {
+        blocks.push({
+          title: "Urgent Safety Step",
+          icon: "!",
+          color: "pink",
+          items: [
+            "Seek immediate support from a qualified healthcare professional, nearest Emergency Department, Klinik Kesihatan, occupational health service, or local emergency services.",
+            "If there is immediate danger, do not wait for workplace review. Prioritise personal safety and urgent care.",
+            "Inform a trusted person or supervisor if safe to do so."
+          ]
+        });
+      }
+
+      const individualItems = [
+        "Protect recovery time: plan sleep, rest breaks, hydration, meals, and decompression after demanding work.",
+        "Use short stress-management practices such as slow breathing, grounding, prayer or reflection, light physical activity, or relaxation.",
+        "Reduce avoidable non-work overload temporarily while the work plan is being adjusted."
+      ];
+      if (domainScores.personal >= 50) {
+        individualItems.push("Because personal burnout is elevated, consider medical or mental health assessment if exhaustion is persistent, worsening, or associated with low mood, anxiety, or physical symptoms.");
+      }
+      blocks.push({ title: "Individual Recovery Actions", icon: "I", color: "green", items: individualItems });
+
+      const workItems = [
+        "Discuss one or two priority stressors with a supervisor, occupational health, OSH, HR, or a trusted workplace support person.",
+        "Review workload, deadlines, role clarity, task prioritisation, and the balance between demand and available resources.",
+        "Agree on a follow-up date and one practical change that can be reviewed."
+      ];
+      if (selected.includes("Workload")) workItems.push("For workload: identify essential tasks, defer non-urgent tasks where feasible, and review staffing or task distribution.");
+      if (selected.includes("Lack of control")) workItems.push("For low control: request clearer decision space, more predictable scheduling, or shared planning of priorities.");
+      if (selected.includes("Role conflict or unclear role")) workItems.push("For role conflict: clarify responsibilities, escalation routes, and what can be safely deprioritised.");
+      if (selected.includes("Shift work or overtime")) workItems.push("For shift work or overtime: review rest periods, overtime pattern, night duties, and recovery between shifts.");
+      blocks.push({ title: "Supervisor and Work Design Actions", icon: "W", color: "blue", items: workItems });
+
+      const clientItems = [
+        "Use peer debriefing after emotionally difficult interactions, cases, or complaints.",
+        "Where feasible, rotate high-emotional-demand duties and build short recovery pauses between intense tasks.",
+        "Request communication, de-escalation, trauma-informed care, or conflict-management support if client-facing demand is a main stressor."
+      ];
+      if (domainScores.client >= 50 || highestDomain === "client" || selected.includes("High emotional demand")) {
+        blocks.push({ title: "Client / Patient-Facing Support", icon: "C", color: "pink", items: clientItems });
+      }
+
+      const referralItems = [
+        `Repeat screening in ${overallBand.followUp}.`,
+        "Consider Employee Assistance Programme, counselling, occupational health, Klinik Kesihatan, or a mental health professional if symptoms persist or functioning is affected.",
+        "This action plan is for support and prevention. It is not medical treatment."
+      ];
+      if (impairment === "moderate") referralItems.push("Moderate functional impact: consider earlier professional assessment and temporary work adjustment.");
+      if (bullying) referralItems.push("Bullying, harassment, or violence: follow workplace reporting and safety procedures. Seek support from OSH, HR, supervisor, union or staff representative, or relevant authority as appropriate.");
+      blocks.push({ title: "Referral and Follow-Up", icon: "R", color: "green", items: referralItems });
+
+      return blocks;
+    }
+
+    function currentDetails() {
+      return {
+        name: document.getElementById("userName").value.trim() || "Not stated",
+        role: document.getElementById("userRole").value.trim() || "Not stated",
+        date: document.getElementById("screeningDate").value || new Date().toISOString().slice(0, 10),
+        notes: document.getElementById("notes").value.trim() || "None",
+        stressors: state.stressors.length ? state.stressors.join(", ") : "None selected"
+      };
+    }
+
+    function updatePrintReport() {
+      const report = document.getElementById("printReport");
+      const details = currentDetails();
+      if (!state.scores) {
+        report.innerHTML = `
+          <section class="print-page">
+            <div class="print-header">
+              <div>
+                <h1>Burnout Screening and Workplace Action Plan Tool</h1>
+                <p class="print-small">Created by Dr Suriya Kumareswaran / dr.suriya@moh.gov.my</p>
+              </div>
+              <p><strong>Date:</strong> ${escapeHtml(currentDetails().date)}</p>
+            </div>
+            <p>This printout is incomplete because not all questionnaire items have been answered.</p>
+          </section>
+        `;
+        return;
+      }
+
+      const { domainScores, overallBand, highestDomain, urgent } = state.scores;
+      const plan = buildActionPlan().map(block => ({
+        ...block,
+        items: block.items.slice(0, 3)
+      }));
+      const conciseRefs = [
+        "WHO. Burn-out an occupational phenomenon: ICD-11. https://www.who.int/standards/classifications/frequently-asked-questions/burn-out-an-occupational-phenomenon",
+        "MOH Malaysia self-test page. Copenhagen Burnout Inventory (CBI). https://mentari.moh.gov.my/self-test/",
+        "DOSH Malaysia. Guidelines on Psychosocial Risk Assessment and Management at the Workplace 2024.",
+        "WHO. Mental health at work. https://www.who.int/news-room/fact-sheets/detail/mental-health-at-work",
+        "NICE. NG212 Mental wellbeing at work: recommendations. https://www.nice.org.uk/guidance/ng212/chapter/Recommendations",
+        "Kristensen TS et al. Copenhagen Burnout Inventory. https://nfa.dk/media/hl5nbers/cbi-first-edition.pdf",
+        "ISO 45003:2021 Psychological health and safety at work. https://www.iso.org/standard/64283.html",
+        "WHO and ILO. Mental health at work: policy brief. https://www.who.int/publications/i/item/9789240057944"
+      ];
+      report.innerHTML = `
+        <section class="print-page">
+          <div class="print-header">
+            <div>
+              <h1>Burnout Screening and Workplace Action Plan Tool</h1>
+              <p class="print-small">Individual non-diagnostic report</p>
+            </div>
+            <p><strong>Created by</strong><br>Dr Suriya Kumareswaran<br>dr.suriya@moh.gov.my</p>
+          </div>
+
+          <div class="print-meta">
+            <div><strong>Name</strong><br>${escapeHtml(details.name)}</div>
+            <div><strong>Work role</strong><br>${escapeHtml(details.role)}</div>
+            <div><strong>Date</strong><br>${escapeHtml(details.date)}</div>
+          </div>
+
+          <div class="print-compact-box">
+            <h2>Result Summary</h2>
+            <p><strong>Overall priority:</strong> ${overallBand.label}</p>
+            <p><strong>Main concern:</strong> ${domainLabel(highestDomain)}</p>
+            <p>${urgent ? "Urgent support is recommended because a safety or severe functional concern was selected." : "Result suggests burnout-related symptoms for workplace support planning. This is not a diagnosis."}</p>
+          </div>
+
+          <div class="print-score-grid">
+            ${Object.entries(domainScores).map(([id, score]) => `
+              <div class="print-score">
+                <h3>${domainLabel(id)}</h3>
+                <strong>${score}</strong>
+                <span>${bandFor(score).label}</span>
+              </div>
+            `).join("")}
+          </div>
+
+          <div class="print-columns">
+            <div class="print-compact-box">
+              <h2>Main Stressors</h2>
+              <p>${escapeHtml(details.stressors)}</p>
+            </div>
+            <div class="print-compact-box">
+              <h2>Personal Notes</h2>
+              <p>${escapeHtml(details.notes)}</p>
+            </div>
+          </div>
+
+          <p class="print-small"><strong>Disclaimer:</strong> This tool is for individual screening, workplace health education, and guided action planning. It is not a diagnosis and does not replace professional healthcare assessment.</p>
+        </section>
+
+        <section class="print-page">
+          <div class="print-header">
+            <div>
+              <h1>Guided Workplace Action Plan</h1>
+              <p class="print-small">Concise support plan for discussion and follow-up</p>
+            </div>
+            <p><strong>Follow-up:</strong><br>${overallBand.followUp}</p>
+          </div>
+
+          <div class="print-columns">
+            ${plan.map(block => `
+            <div class="print-compact-box">
+              <h3>${block.title}</h3>
+              <ul class="print-list">${block.items.map(item => `<li>${item}</li>`).join("")}</ul>
+            </div>
+            `).join("")}
+          </div>
+        </section>
+
+        <section class="print-page">
+          <div class="print-header">
+            <div>
+              <h1>References</h1>
+              <p class="print-small">Accessed 25 June 2026</p>
+            </div>
+          </div>
+          <ol class="print-list">
+            ${conciseRefs.map(ref => `<li>${escapeHtml(ref)}</li>`).join("")}
+          </ol>
+          <div class="print-compact-box" style="margin-top: 12px;">
+            <h2>Use Note</h2>
+            <p>This report is for individual reflection and workplace support planning. It should complement, not replace, employer psychosocial risk assessment, occupational health advice, or professional healthcare assessment.</p>
+          </div>
+        </section>
+      `;
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function resetTool() {
+      if (!confirm("Reset all answers and saved progress?")) return;
+      localStorage.removeItem("burnoutToolState");
+      state.answers = {};
+      state.stressors = [];
+      state.scores = null;
+      document.querySelectorAll("input[type='radio'], input[type='checkbox']").forEach(input => input.checked = false);
+      ["userName", "userRole", "notes"].forEach(id => document.getElementById(id).value = "");
+      document.getElementById("screeningDate").value = new Date().toISOString().slice(0, 10);
+      document.getElementById("impairment").value = "none";
+      document.getElementById("selfHarm").value = "no";
+      updateResults();
+      location.hash = "#screening";
+    }
+
+    function activateTab(tabId, scrollToTabs = false) {
+      document.querySelectorAll("[data-tab-target]").forEach(button => {
+        const active = button.dataset.tabTarget === tabId;
+        button.classList.toggle("is-active", active);
+        button.setAttribute("aria-selected", active ? "true" : "false");
+      });
+
+      document.querySelectorAll("[data-tab-panel]").forEach(panel => {
+        panel.classList.toggle("is-active", panel.dataset.tabPanel === tabId);
+      });
+
+      if (scrollToTabs) {
+        document.getElementById("output-tabs").scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    function bindEvents() {
+      document.addEventListener("change", event => {
+        const target = event.target;
+        if (target.matches("input[type='radio'][data-qid]")) {
+          state.answers[target.dataset.qid] = target.value;
+          updateResults();
+        }
+        if (target.matches("#stressorList input[type='checkbox']")) {
+          state.stressors = Array.from(document.querySelectorAll("#stressorList input:checked")).map(input => input.value);
+          updateResults();
+        }
+        if (target.matches("input, select, textarea")) {
+          updateResults();
+        }
+      });
+
+      document.addEventListener("input", event => {
+        if (event.target.matches("input[type='text'], textarea")) {
+          saveState();
+          updatePrintReport();
+        }
+      });
+
+      document.querySelectorAll("[data-tab-target]").forEach(button => {
+        button.addEventListener("click", () => activateTab(button.dataset.tabTarget));
+      });
+
+      document.querySelectorAll("[data-tab-link]").forEach(link => {
+        link.addEventListener("click", event => {
+          event.preventDefault();
+          activateTab(link.dataset.tabLink, true);
+        });
+      });
+
+      document.getElementById("mobileNav").addEventListener("change", event => {
+        const value = event.target.value;
+        if (value.startsWith("tab:")) {
+          activateTab(value.replace("tab:", ""), true);
+          return;
+        }
+        document.querySelector(value)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
+      document.getElementById("calculateBtn").addEventListener("click", updateResults);
+      document.getElementById("printBtn").addEventListener("click", () => {
+        updateResults();
+        window.print();
+      });
+      document.getElementById("resetBtn").addEventListener("click", resetTool);
+    }
+
+    function init() {
+      renderQuestionnaire();
+      renderStressors();
+      document.getElementById("screeningDate").value = new Date().toISOString().slice(0, 10);
+      loadSavedState();
+      bindEvents();
+      activateTab("results");
+      updateResults();
+    }
+
+    init();
+  </script>
+</body>
+</html>
