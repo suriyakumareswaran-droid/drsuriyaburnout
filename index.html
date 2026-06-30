@@ -195,6 +195,40 @@
       margin-top: 16px;
     }
 
+    .sheet-save-box {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid #bde7dc;
+      border-left: 4px solid var(--green);
+      background: #f0fbf8;
+    }
+
+    .sheet-save-box h3 {
+      margin: 0;
+      color: var(--blue-dark);
+      font-size: 1rem;
+    }
+
+    .sheet-save-box p {
+      margin: 0;
+      color: #31506d;
+      font-size: 0.92rem;
+    }
+
+    .sheet-status {
+      min-height: 22px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .sheet-status.ok { color: var(--green); }
+    .sheet-status.warn { color: var(--warn); }
+    .sheet-status.error { color: var(--danger); }
+
     main {
       min-width: 0;
       padding: 0 0 56px;
@@ -1616,6 +1650,12 @@
           <div class="notice screen-only" style="margin-top: 24px;">
             Complete all 19 questions, review your result and action plan, then print or save your personal copy.
           </div>
+          <div class="sheet-save-box screen-only" id="sheetSaveBox">
+            <h3>Save Result to Google Sheet</h3>
+            <p>After completing all questions, tap this once to send the result summary to the private response sheet.</p>
+            <button class="btn blue full" type="button" id="saveSheetBtn" disabled>Save Result to Google Sheet</button>
+            <div class="sheet-status" id="sheetStatus">Google Sheet saving is ready after setup.</div>
+          </div>
           <div class="final-actions screen-only">
             <button class="btn green full" type="button" id="printBtn" disabled>Print / Save PDF</button>
             <button class="btn pink full" type="button" id="resetBtn">Reset</button>
@@ -1649,6 +1689,9 @@
   </div>
 
   <script>
+    const GOOGLE_SHEET_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyqs-373o_u931YBg-An2yCJfFioWpus1FIt5ulVHpE7mlKl1VBfYEgYksGzhC_mgwuHw/exec";
+    const GOOGLE_SHEET_ID = "1EbjP75a7RBR1IEzhkefO0sgteSkpXzyTJxwMlY1BpJY";
+
     const domains = [
       {
         id: "personal",
@@ -1865,9 +1908,14 @@
       const resultArea = document.getElementById("resultArea");
       const planArea = document.getElementById("planArea");
       const printBtn = document.getElementById("printBtn");
+      const saveSheetBtn = document.getElementById("saveSheetBtn");
+      const sheetStatus = document.getElementById("sheetStatus");
 
       if (!state.scores) {
         printBtn.disabled = true;
+        saveSheetBtn.disabled = true;
+        sheetStatus.className = "sheet-status";
+        sheetStatus.textContent = "Complete all 19 questions before saving to Google Sheet.";
         completeNotice.hidden = false;
         resultArea.hidden = true;
         planArea.className = "notice";
@@ -1877,6 +1925,14 @@
       }
 
       printBtn.disabled = false;
+      saveSheetBtn.disabled = false;
+      if (!GOOGLE_SHEET_WEB_APP_URL) {
+        sheetStatus.className = "sheet-status warn";
+        sheetStatus.textContent = "Setup needed: paste your Google Apps Script Web App URL into GOOGLE_SHEET_WEB_APP_URL.";
+      } else if (!sheetStatus.classList.contains("ok")) {
+        sheetStatus.className = "sheet-status";
+        sheetStatus.textContent = "Ready to save this completed result to Google Sheet.";
+      }
       completeNotice.hidden = true;
       resultArea.hidden = false;
       const { domainScores, highestDomain, overallBand, urgent } = state.scores;
@@ -2145,6 +2201,69 @@
       };
     }
 
+    function buildSheetPayload() {
+      if (!state.scores) return null;
+      const details = currentDetails();
+      const { domainScores, maxScore, highestDomain, overallBand, urgent, impairment, selfHarm } = state.scores;
+      return {
+        spreadsheetId: GOOGLE_SHEET_ID,
+        submissionId: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+        submittedAt: new Date().toISOString(),
+        name: details.name,
+        role: details.role,
+        screeningDate: details.date,
+        overallPriority: overallBand.label,
+        mainConcern: domainLabel(highestDomain),
+        maxScore,
+        personalScore: domainScores.personal,
+        workScore: domainScores.work,
+        clientScore: domainScores.client,
+        impairment,
+        selfHarm,
+        urgent: urgent ? "Yes" : "No",
+        stressors: details.stressors,
+        notes: details.notes,
+        followUp: overallBand.followUp,
+        userAgent: navigator.userAgent
+      };
+    }
+
+    async function saveResultToGoogleSheet() {
+      const status = document.getElementById("sheetStatus");
+      const button = document.getElementById("saveSheetBtn");
+
+      if (!state.scores) {
+        status.className = "sheet-status warn";
+        status.textContent = "Please answer all 19 questions before saving.";
+        return;
+      }
+
+      if (!GOOGLE_SHEET_WEB_APP_URL) {
+        status.className = "sheet-status warn";
+        status.textContent = "Setup needed: paste your Google Apps Script Web App URL into the HTML first.";
+        return;
+      }
+
+      button.disabled = true;
+      status.className = "sheet-status";
+      status.textContent = "Saving result to Google Sheet...";
+
+      try {
+        await fetch(GOOGLE_SHEET_WEB_APP_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(buildSheetPayload())
+        });
+        status.className = "sheet-status ok";
+        status.textContent = "Result sent to Google Sheet.";
+      } catch (error) {
+        button.disabled = false;
+        status.className = "sheet-status error";
+        status.textContent = "Could not send result. Check the Apps Script URL and internet connection.";
+      }
+    }
+
     function updatePrintReport() {
       const report = document.getElementById("printReport");
       const details = currentDetails();
@@ -2283,6 +2402,8 @@
       document.getElementById("screeningDate").value = new Date().toISOString().slice(0, 10);
       document.getElementById("impairment").value = "none";
       document.getElementById("selfHarm").value = "no";
+      document.getElementById("sheetStatus").className = "sheet-status";
+      document.getElementById("sheetStatus").textContent = "Google Sheet saving is ready after setup.";
       updateResults();
       location.hash = "#screening";
     }
@@ -2348,6 +2469,7 @@
 
       document.getElementById("calculateBtn").addEventListener("click", updateResults);
       document.getElementById("viewPlanBtn").addEventListener("click", () => activateTab("action-references", true));
+      document.getElementById("saveSheetBtn").addEventListener("click", saveResultToGoogleSheet);
       document.getElementById("printBtn").addEventListener("click", () => {
         updateResults();
         window.print();
