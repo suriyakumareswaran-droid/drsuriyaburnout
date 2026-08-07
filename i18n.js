@@ -23,20 +23,20 @@
       beforeText:'This individual tool supports reflection, workplace discussion, and early action planning. It is not a medical diagnosis.',
       safetyNote:'Safety note',
       seekTitle:'When to seek help now',
-      seek:'If there is immediate danger, severe functional impairment, self-harm thought, violence, harassment, or unsafe work situation, seek urgent support from healthcare, emergency services, occupational health, OSH, HR, or a trusted supervisor.',
+      seek:'If there is immediate danger, self-harm concern, immediate threat or violence, or severe functional impairment where you cannot function safely, seek urgent support from healthcare, emergency services, occupational health, OSH, HR, or a trusted supervisor.',
       scoreHow:'How scoring works',
-      scoreHowText:'Answers are converted to 0-100. The family/friends energy item is reverse scored, following the Copenhagen Burnout Inventory method.',
+      scoreHowText:'CBI domain scores are converted to 0-100. The displayed categories are action-priority bands for this tool, not official CBI severity classifications. Follow-up timing should be validated through Fuzzy Delphi Method before formal use.',
       printDetails:'Optional Details for Print',
       printDetailsText:'Leave blank if you prefer. These details stay on this device and appear only in your printed or saved copy.',
       fields:['Name','Work role / Unit','Screening date'],
       optional:'Optional',
-      qText:'Choose one answer for every question. 1 is very low, 5 is very high.',
+      qText:'Choose one answer for every question. The tool uses the correct CBI response format for each item.',
       items19:'19 items',
-      scale:['To a Very Low Degree','To a Low Degree','Somewhat High','To a High Degree','To a Very High Degree'],
+      scale:[['Frequency items','Always / Often / Sometimes / Seldom / Never or almost never'],['Degree items','To a very high degree / To a high degree / Somewhat / To a low degree / To a very low degree']],
       stressTitle:'Workplace Stressors and Safety',
       stressText:'Select any current issues. These help shape the action plan.',
       impact:'Current functional impact',
-      safetyConcern:'Immediate safety concern or self-harm thought?',
+      safetyConcern:'Immediate safety concern, self-harm thought, immediate threat or violence?',
       impactOpts:['No major impact','Mild impact','Moderate impact','Severe impact / cannot function safely'],
       safetyOpts:['No','Yes - urgent support needed'],
       outputTitle:'Results and Action Plan',
@@ -44,13 +44,13 @@
       tabResults:'1. Results',
       tabAction:'2. Action Plan + Print',
       auto:'Automated Result',
-      autoText:'Scores are calculated automatically for planning, not diagnosis.',
+      autoText:'CBI scores are calculated automatically for action planning, not diagnosis.',
       calc:'Calculate Now',
       complete:'Answer all 19 questions to generate your result and action plan.',
-      overall:'Overall priority',
+      overall:'Overall action priority',
       mainConcern:'Main concern',
-      urgentMsg:'Urgent support is recommended because a safety or severe functional concern was selected.',
-      resultMsg:'Your result suggests burnout-related symptoms. This is not a diagnosis.',
+      urgentMsg:'Urgent support is recommended because immediate safety, self-harm, immediate threat/violence, or severe functional impairment was selected.',
+      resultMsg:'Your CBI domain scores are used to guide action planning. This is not a diagnosis or an official CBI severity classification.',
       next:'Next:',
       nextText:'open your guided action plan, then print or save your personal copy.',
       viewPlan:'View My Action Plan',
@@ -69,7 +69,7 @@
       refs:'References',
       refsText:'References used to structure the explanation, scoring, and action plan.',
       footer:'This tool is an individual support aid. It should complement, not replace, employer psychosocial risk assessment processes, occupational health advice, or professional healthcare assessment.',
-      bands:{Low:'Low',Mild:'Mild',Moderate:'Moderate',High:'High',Urgent:'Urgent'},
+      bands:{'Low priority':'Low priority','Mild priority':'Mild priority','Moderate priority':'Moderate priority','High priority':'High priority','Urgent safety priority':'Urgent safety priority'},
       domain:{personal:'Personal Burnout',work:'Work-Related Burnout',client:'Client / Patient-Related Burnout'},
       action:{
         'Urgent Safety Step':['Urgent Safety Step','Safety first','If safety is affected, get help before planning work changes.'],
@@ -80,7 +80,7 @@
         'Other Issue-Based Action Plan':['Other Issue-Based Action Plan','Issue matched','Stress, workload, safety, shift, conflict and other issues use different guidance.'],
         'Referral and Follow-Up':['Referral and Follow-Up','Follow-up','One check-in, one support step, and one review date.']
       },
-      print:['Personal report','Created by','Result Summary','Main Stressors','Disclaimer','This tool is for individual screening, workplace health education, and guided action planning. It is not a diagnosis and does not replace professional healthcare assessment.','Follow-up','Other Issue Statement','Use Note','Accessed 25 June 2026']
+      print:['Personal report','Created by','Result Summary','Main Stressors','Disclaimer','This tool is for individual screening, workplace health education, and guided action planning. It is not a diagnosis and does not replace professional healthcare assessment.','Suggested review timing','Other Issue Statement','Use Note','Accessed 25 June 2026']
     },
     bm:{
       title:'Alat Saringan Kelesuan dan Pelan Tindakan Tempat Kerja',
@@ -105,20 +105,20 @@
       beforeText:'Alat individu ini membantu refleksi, perbincangan di tempat kerja dan perancangan tindakan awal. Ia bukan diagnosis perubatan.',
       safetyNote:'Nota keselamatan',
       seekTitle:'Bila perlu mendapatkan bantuan segera',
-      seek:'Jika terdapat bahaya segera, gangguan fungsi yang teruk, pemikiran mencederakan diri, keganasan, gangguan atau keadaan kerja yang tidak selamat, dapatkan sokongan segera daripada perkhidmatan kesihatan, kecemasan, kesihatan pekerjaan, OSH/JKKP, HR atau penyelia yang dipercayai.',
+      seek:'Jika terdapat bahaya segera, kebimbangan mencederakan diri, ancaman atau keganasan segera, atau gangguan fungsi teruk sehingga tidak dapat berfungsi dengan selamat, dapatkan sokongan segera daripada perkhidmatan kesihatan, kecemasan, kesihatan pekerjaan, OSH/JKKP, HR atau penyelia yang dipercayai.',
       scoreHow:'Cara skor dikira',
-      scoreHowText:'Jawapan ditukar kepada skor 0-100. Item tenaga untuk keluarga/rakan diskor secara songsang mengikut kaedah Copenhagen Burnout Inventory.',
+      scoreHowText:'Skor domain CBI ditukar kepada 0-100. Kategori yang dipaparkan ialah jalur keutamaan tindakan alat ini, bukan klasifikasi tahap keterukan rasmi CBI. Tempoh susulan perlu disahkan melalui Fuzzy Delphi Method sebelum penggunaan rasmi.',
       printDetails:'Butiran Pilihan untuk Cetakan',
       printDetailsText:'Boleh dibiarkan kosong. Butiran ini kekal pada peranti ini dan hanya muncul dalam salinan yang dicetak atau disimpan.',
       fields:['Nama','Jawatan / Unit','Tarikh saringan'],
       optional:'Pilihan',
-      qText:'Pilih satu jawapan untuk setiap soalan. 1 bermaksud sangat rendah, 5 bermaksud sangat tinggi.',
+      qText:'Pilih satu jawapan untuk setiap soalan. Alat ini menggunakan format respons CBI yang betul mengikut jenis item.',
       items19:'19 item',
-      scale:['Tahap sangat rendah','Tahap rendah','Agak tinggi','Tahap tinggi','Tahap sangat tinggi'],
+      scale:[['Item kekerapan','Sentiasa / Kerap / Kadang-kadang / Jarang / Tidak pernah atau hampir tidak pernah'],['Item tahap','Tahap sangat tinggi / Tahap tinggi / Sederhana / Tahap rendah / Tahap sangat rendah']],
       stressTitle:'Punca Tekanan Kerja dan Keselamatan',
       stressText:'Pilih isu semasa yang berkaitan. Pilihan ini membantu membentuk pelan tindakan.',
       impact:'Kesan semasa terhadap fungsi kerja',
-      safetyConcern:'Ada kebimbangan keselamatan segera atau pemikiran mencederakan diri?',
+      safetyConcern:'Ada kebimbangan keselamatan segera, pemikiran mencederakan diri, ancaman segera atau keganasan?',
       impactOpts:['Tiada kesan besar','Kesan ringan','Kesan sederhana','Kesan teruk / tidak dapat berfungsi dengan selamat'],
       safetyOpts:['Tidak','Ya - perlukan sokongan segera'],
       outputTitle:'Keputusan dan Pelan Tindakan',
@@ -126,13 +126,13 @@
       tabResults:'1. Keputusan',
       tabAction:'2. Pelan Tindakan + Cetak',
       auto:'Keputusan Automatik',
-      autoText:'Skor dikira secara automatik untuk perancangan, bukan diagnosis.',
+      autoText:'Skor CBI dikira secara automatik untuk perancangan tindakan, bukan diagnosis.',
       calc:'Kira Sekarang',
       complete:'Jawab semua 19 soalan untuk menjana keputusan dan pelan tindakan.',
-      overall:'Keutamaan keseluruhan',
+      overall:'Keutamaan tindakan keseluruhan',
       mainConcern:'Kebimbangan utama',
-      urgentMsg:'Sokongan segera disyorkan kerana kebimbangan keselamatan atau gangguan fungsi yang serius telah dipilih.',
-      resultMsg:'Keputusan anda menunjukkan gejala berkaitan kelesuan. Ini bukan diagnosis.',
+      urgentMsg:'Sokongan segera disyorkan kerana keselamatan segera, mencederakan diri, ancaman/keganasan segera atau gangguan fungsi teruk telah dipilih.',
+      resultMsg:'Skor domain CBI digunakan untuk membimbing perancangan tindakan. Ini bukan diagnosis atau klasifikasi tahap keterukan rasmi CBI.',
       next:'Seterusnya:',
       nextText:'buka pelan tindakan berpandu, kemudian cetak atau simpan salinan peribadi anda.',
       viewPlan:'Lihat Pelan Tindakan Saya',
@@ -151,7 +151,7 @@
       refs:'Rujukan',
       refsText:'Rujukan yang digunakan untuk membina penerangan, pemarkahan dan pelan tindakan.',
       footer:'Alat ini ialah bantuan sokongan individu. Ia melengkapi, bukan menggantikan, pentaksiran risiko psikososial majikan, nasihat kesihatan pekerjaan atau penilaian profesional kesihatan.',
-      bands:{Low:'Rendah',Mild:'Ringan',Moderate:'Sederhana',High:'Tinggi',Urgent:'Segera'},
+      bands:{'Low priority':'Keutamaan rendah','Mild priority':'Keutamaan ringan','Moderate priority':'Keutamaan sederhana','High priority':'Keutamaan tinggi','Urgent safety priority':'Keutamaan keselamatan segera'},
       domain:{personal:'Kelesuan Peribadi',work:'Kelesuan Berkaitan Kerja',client:'Kelesuan Berkaitan Klien / Pesakit'},
       action:{
         'Urgent Safety Step':['Langkah Keselamatan Segera','Keselamatan dahulu','Jika keselamatan terjejas, dapatkan bantuan sebelum merancang perubahan kerja.'],
@@ -162,11 +162,12 @@
         'Other Issue-Based Action Plan':['Pelan Tindakan Berdasarkan Isu Lain','Isu dipadankan','Tekanan, beban kerja, keselamatan, syif, konflik dan isu lain mempunyai panduan berbeza.'],
         'Referral and Follow-Up':['Rujukan dan Susulan','Susulan','Satu semakan, satu langkah sokongan dan satu tarikh susulan.']
       },
-      print:['Laporan peribadi','Dihasilkan oleh','Ringkasan Keputusan','Punca Tekanan Utama','Penafian','Alat ini adalah untuk saringan individu, pendidikan kesihatan tempat kerja dan perancangan tindakan berpandu. Ia bukan diagnosis dan tidak menggantikan penilaian profesional kesihatan.','Susulan','Pernyataan Isu Lain','Nota Penggunaan','Diakses 25 Jun 2026']
+      print:['Laporan peribadi','Dihasilkan oleh','Ringkasan Keputusan','Punca Tekanan Utama','Penafian','Alat ini adalah untuk saringan individu, pendidikan kesihatan tempat kerja dan perancangan tindakan berpandu. Ia bukan diagnosis dan tidak menggantikan penilaian profesional kesihatan.','Cadangan masa semakan','Pernyataan Isu Lain','Nota Penggunaan','Diakses 25 Jun 2026']
     }
   };
+  const responseLabelBM={frequency:['Sentiasa','Kerap','Kadang-kadang','Jarang','Tidak pernah'],degree:['Tahap sangat tinggi','Tahap tinggi','Sederhana','Tahap rendah','Tahap sangat rendah']};
   const qBM={
-    personal:['Berapa kerap anda berasa letih?','Berapa kerap anda berasa letih secara fizikal?','Berapa kerap anda berasa letih secara emosi?','Berapa kerap anda berfikir: “Saya sudah tidak sanggup meneruskannya?”','Berapa kerap anda berasa lesu?','Berapa kerap anda berasa lemah dan mudah jatuh sakit?'],
+    personal:['Berapa kerap anda berasa letih?','Berapa kerap anda berasa letih secara fizikal?','Berapa kerap anda berasa letih secara emosi?','Berapa kerap anda berfikir: "Saya sudah tidak sanggup meneruskannya?"','Berapa kerap anda berasa lesu?','Berapa kerap anda berasa lemah dan mudah jatuh sakit?'],
     work:['Adakah kerja anda meletihkan emosi anda?','Adakah anda berasa lesu upaya disebabkan pekerjaan anda?','Adakah pekerjaan anda menyebabkan anda berasa kecewa?','Adakah anda berasa lesu pada akhir hari bekerja?','Adakah anda berasa letih pada waktu pagi apabila memikirkan satu lagi hari bekerja?','Adakah setiap jam bekerja terasa memenatkan bagi anda?','Adakah anda mempunyai tenaga yang mencukupi untuk meluangkan masa bersama keluarga dan rakan ketika waktu lapang?'],
     client:['Adakah anda berasa sukar untuk berurusan dengan klien atau pesakit?','Adakah urusan dengan klien atau pesakit menyebabkan anda berasa kecewa?','Adakah bekerja dengan klien atau pesakit menghabiskan tenaga anda?','Apabila berurusan dengan klien atau pesakit, adakah anda berasa lebih banyak memberi daripada menerima?','Adakah anda berasa penat atau jemu bekerja dengan klien atau pesakit?','Adakah anda kadangkala tertanya-tanya berapa lama lagi anda mampu meneruskan kerja berhadapan klien atau pesakit?']
   };
@@ -190,10 +191,10 @@
     ['Use peer debriefing after emotionally difficult interactions, cases, or complaints.','Gunakan perbincangan rakan sekerja selepas interaksi, kes atau aduan yang mencabar emosi.'],
     ['Where feasible, rotate high-emotional-demand duties and build short recovery pauses between intense tasks.','Jika boleh, gilirkan tugas yang menuntut emosi tinggi dan sediakan rehat pemulihan ringkas antara tugas intensif.'],
     ['Request communication, de-escalation, trauma-informed care, or conflict-management support if client-facing demand is a main stressor.','Mohon sokongan komunikasi, de-eskalasi, penjagaan berasaskan trauma atau pengurusan konflik jika tuntutan berhadapan klien/pesakit ialah punca tekanan utama.'],
-    ['Repeat screening in Immediate.','Ulang saringan dengan segera.'],
-    ['Repeat screening in 2 to 4 weeks.','Ulang saringan dalam 2 hingga 4 minggu.'],
-    ['Repeat screening in 4 to 8 weeks.','Ulang saringan dalam 4 hingga 8 minggu.'],
-    ['Repeat screening in 8 to 12 weeks.','Ulang saringan dalam 8 hingga 12 minggu.'],
+    ['Suggested review timing: Immediate review. This is a tool action-priority interval and should be validated through Fuzzy Delphi Method before formal implementation.','Cadangan masa semakan: semakan segera. Tempoh ini ialah algoritma keutamaan tindakan alat ini dan perlu disahkan melalui Fuzzy Delphi Method sebelum pelaksanaan rasmi.'],
+    ['Suggested review timing: 2 to 4 weeks. This is a tool action-priority interval and should be validated through Fuzzy Delphi Method before formal implementation.','Cadangan masa semakan: 2 hingga 4 minggu. Tempoh ini ialah algoritma keutamaan tindakan alat ini dan perlu disahkan melalui Fuzzy Delphi Method sebelum pelaksanaan rasmi.'],
+    ['Suggested review timing: 4 to 8 weeks. This is a tool action-priority interval and should be validated through Fuzzy Delphi Method before formal implementation.','Cadangan masa semakan: 4 hingga 8 minggu. Tempoh ini ialah algoritma keutamaan tindakan alat ini dan perlu disahkan melalui Fuzzy Delphi Method sebelum pelaksanaan rasmi.'],
+    ['Suggested review timing: 8 to 12 weeks. This is a tool action-priority interval and should be validated through Fuzzy Delphi Method before formal implementation.','Cadangan masa semakan: 8 hingga 12 minggu. Tempoh ini ialah algoritma keutamaan tindakan alat ini dan perlu disahkan melalui Fuzzy Delphi Method sebelum pelaksanaan rasmi.'],
     ['Consider Employee Assistance Programme, counselling, occupational health, Klinik Kesihatan, or a mental health professional if symptoms persist or functioning is affected.','Pertimbangkan Program Bantuan Pekerja, kaunseling, kesihatan pekerjaan, Klinik Kesihatan atau profesional kesihatan mental jika gejala berterusan atau fungsi kerja terjejas.'],
     ['This action plan is for support and prevention. It is not medical treatment.','Pelan tindakan ini adalah untuk sokongan dan pencegahan. Ia bukan rawatan perubatan.'],
     ['Moderate functional impact: consider earlier professional assessment and temporary work adjustment.','Kesan fungsi sederhana: pertimbangkan penilaian profesional lebih awal dan pelarasan kerja sementara.'],
@@ -234,7 +235,7 @@
     text('#cbi h2',c.cbiTitle); text('#cbi .muted',c.cbiText); document.querySelectorAll('#cbi .card').forEach((card,i)=>{text(`#cbi .card:nth-child(${i+1}) h3`,c.cards[i][0]);text(`#cbi .card:nth-child(${i+1}) p`,c.cards[i][1])});
     text('#about h2',c.beforeTitle); text('#about .muted',c.beforeText); const notes=document.querySelectorAll('#about .notice'); if(notes[0])notes[0].innerHTML=`<strong>${c.seekTitle}</strong><br>${c.seek}`; if(notes[1])notes[1].innerHTML=`<strong>${c.scoreHow}</strong><br>${c.scoreHowText}`;
     text('#details h2',c.printDetails); text('#details .muted',c.printDetailsText); document.querySelectorAll('#details .field-label').forEach((l,i)=>l.textContent=c.fields[i]); document.querySelectorAll('#details input[type=text]').forEach(i=>i.placeholder=c.optional);
-    text('#screening h2',c.nav[3]); text('#screening .muted',c.qText); text('#screening .pill',c.items19); document.querySelectorAll('.scale span').forEach((sp,i)=>sp.textContent=c.scale[i]);
+    text('#screening h2',c.nav[3]); text('#screening .muted',c.qText); text('#screening .pill',c.items19); document.querySelectorAll('.scale div').forEach((box,i)=>{const h=box.querySelector('h3'),sp=box.querySelector('span'); if(c.scale[i]){if(h)h.textContent=c.scale[i][0]; if(sp)sp.textContent=c.scale[i][1];}});
     text('#stressors h2',c.stressTitle); text('#stressors .muted',c.stressText); const sl=document.querySelectorAll('#stressors .field-label'); if(sl[0])sl[0].textContent=c.impact; if(sl[1])sl[1].textContent=c.safetyConcern; [...$('impairment').options].forEach((o,i)=>o.textContent=c.impactOpts[i]); [...$('selfHarm').options].forEach((o,i)=>o.textContent=c.safetyOpts[i]);
     text('#output>.title h2',c.outputTitle); text('#output>.title .muted',c.outputText); text('#tab-results',c.tabResults); text('#tab-action',c.tabAction); text('#results h2',c.auto); text('#results .muted',c.autoText); text('#calculateBtn',c.calc); text('#completionNotice',c.complete);
     const next=document.querySelector('.next p'); if(next)next.innerHTML=`<strong>${c.next}</strong> ${c.nextText}`; text('#viewPlanBtn',c.viewPlan); text('#plan h2',c.guided); text('#plan .muted',c.guidedText); text('#plan .pill',c.printReady); text('.own h3',c.otherTitle); text('.own p',c.otherText); text('.own .field-label',c.otherLabel); if($('ownActionPlan'))$('ownActionPlan').placeholder=c.otherPlaceholder; text('#action>.notice',c.finalNote); text('#printBtn',c.printBtn); text('#resetBtn',c.reset); text('#topResetBtn',c.reset); text('#references h2',c.refs); text('#references .muted',c.refsText); text('.footer',c.footer);
@@ -244,7 +245,7 @@
     document.querySelectorAll('.domain').forEach((dom,i)=>{
       const ids=['personal','work','client'], id=ids[i]; const h=dom.querySelector('.domain-head h3'); if(h)h.textContent=domTitle[id][bm?1:0];
       const tag=dom.querySelector('.domain-tag'); if(tag)tag.textContent=bm?['Peribadi','Kerja','Klien'][i]:['Personal','Work','Client'][i];
-      dom.querySelectorAll('.q').forEach((q,j)=>{const strong=q.querySelector('strong'), sub=q.querySelector('span'); if(bm){if(strong)strong.textContent=qBM[id][j]+'*'; if(sub)sub.textContent='';} else { if(sub)sub.textContent=''; }});
+      dom.querySelectorAll('.q').forEach((q,j)=>{const strong=q.querySelector('strong'), sub=q.querySelector('span'), type=id==='personal'?'frequency':id==='work'&&j<3?'degree':id==='client'&&j<4?'degree':'frequency'; if(bm){if(strong)strong.textContent=qBM[id][j]+'*'; if(sub)sub.textContent=''; q.querySelectorAll('.answers small').forEach((sm,k)=>sm.textContent=responseLabelBM[type][k]);} else { if(sub)sub.textContent=''; }});
     });
   }
   function patchStressors(){if(lang()!=='bm')return; document.querySelectorAll('#stressorList .check').forEach(l=>{const sp=l.querySelector('span'); if(sp&&stressBM[sp.textContent])sp.textContent=stressBM[sp.textContent]})}
@@ -259,13 +260,13 @@
     const c=C(); if(!document.querySelector('.action'))return;
     document.querySelectorAll('.action').forEach(a=>{const h=a.querySelector('h3'); if(h&&c.action[h.textContent]){const x=c.action[h.textContent]; h.textContent=x[0]; const k=a.querySelector('.kicker'); if(k)k.textContent=x[1]; const p=a.querySelector('.lead'); if(p)p.textContent=x[2];} const sum=a.querySelector('summary'); if(sum)sum.textContent=c.detailsMore;});
     document.querySelectorAll('.visual').forEach(group=>group.querySelectorAll('.va').forEach(tile=>{const icon=tile.querySelector('i'), key=tile.dataset.action; if(icon&&key&&typeof window.stepIcon==='function')icon.innerHTML=window.stepIcon(key); if(lang()==='bm'){const strong=tile.querySelector('strong'), span=tile.querySelector('span'); const hit=key&&visualBM[key]; if(hit){if(strong)strong.textContent=hit[0]; if(span)span.textContent=hit[1];}}}));
-    if(lang()==='bm')document.querySelectorAll('.result-note').forEach(n=>{let h=n.innerHTML;[['Based on:','Berdasarkan:'],['Personal Burnout','Kelesuan Peribadi'],['Work-Related Burnout','Kelesuan Berkaitan Kerja'],['Client / Patient-Related Burnout','Kelesuan Berkaitan Klien / Pesakit'],['Safety or severe functional concern selected','Kebimbangan keselamatan atau fungsi kerja teruk telah dipilih'],['Other issue statement typed by user','Pernyataan isu lain yang ditaip oleh pengguna'],['Typed issue matched to issue-specific actions','Isu yang ditaip dipadankan dengan tindakan khusus mengikut isu'],['Your answers are converted into a practical action explanation','Jawapan anda ditukar kepada penerangan pelan tindakan yang praktikal'],['Elevated answers summarised into practical next steps','Jawapan yang meningkat diringkaskan kepada langkah praktikal seterusnya'],['Overall priority','Keutamaan keseluruhan'],['follow-up','susulan'],['Immediate','Segera'],['Urgent','Segera'],['2 to 4 weeks','2 hingga 4 minggu'],['4 to 8 weeks','4 hingga 8 minggu'],['8 to 12 weeks','8 hingga 12 minggu'],['High','Tinggi'],['Moderate','Sederhana'],['Mild','Ringan'],['Low','Rendah']].forEach(([a,b])=>h=h.replaceAll(a,b));n.innerHTML=h;});
+    if(lang()==='bm')document.querySelectorAll('.result-note').forEach(n=>{let h=n.innerHTML;[['Based on:','Berdasarkan:'],['Personal Burnout','Kelesuan Peribadi'],['Work-Related Burnout','Kelesuan Berkaitan Kerja'],['Client / Patient-Related Burnout','Kelesuan Berkaitan Klien / Pesakit'],['Immediate safety, self-harm, threat/violence, or severe functional concern selected','Keselamatan segera, mencederakan diri, ancaman/keganasan atau gangguan fungsi teruk telah dipilih'],['Safety or severe functional concern selected','Kebimbangan keselamatan atau fungsi kerja teruk telah dipilih'],['Other issue statement typed by user','Pernyataan isu lain yang ditaip oleh pengguna'],['Typed issue matched to issue-specific actions','Isu yang ditaip dipadankan dengan tindakan khusus mengikut isu'],['Your answers are converted into a practical action explanation','Jawapan anda ditukar kepada penerangan pelan tindakan yang praktikal'],['Action priority','Keutamaan tindakan'],['suggested review timing','cadangan masa semakan'],['Immediate safety action','tindakan keselamatan segera'],['Immediate review','semakan segera'],['2 to 4 weeks','2 hingga 4 minggu'],['4 to 8 weeks','4 hingga 8 minggu'],['8 to 12 weeks','8 hingga 12 minggu'],['High priority','Keutamaan tinggi'],['Moderate priority','Keutamaan sederhana'],['Mild priority','Keutamaan ringan'],['Low priority','Keutamaan rendah'],['Urgent safety priority','Keutamaan keselamatan segera']].forEach(([a,b])=>h=h.replaceAll(a,b));n.innerHTML=h;});
     if(lang()==='bm')document.querySelectorAll('.details li').forEach(li=>{for(const [en,bm] of planBM){if(li.textContent===en){li.textContent=bm;break}}});
   }
   function patchPrint(){
     const c=C(); const r=$('printReport'); if(!r)return;
     let h=r.innerHTML; if(lang()==='bm'){
-      [['Burnout Screening and Workplace Action Plan Tool',c.title],['Personal report',c.print[0]],['Created by',c.print[1]],['Result Summary',c.print[2]],['Main Stressors',c.print[3]],['Disclaimer',c.print[4]],['Follow-up',c.print[6]],['Other Issue Statement',c.print[7]],['Use Note',c.print[8]],['Name',c.fields[0]],['Work role',c.fields[1]],['Date',c.fields[2]],['Overall priority',c.overall],['Main concern',c.mainConcern],['Guided Workplace Action Plan',c.guided],['Accessed 25 June 2026',c.print[9]]].forEach(([a,b])=>h=h.replaceAll(a,b));
+      [['Burnout Screening and Workplace Action Plan Tool',c.title],['Personal report',c.print[0]],['Created by',c.print[1]],['Result Summary',c.print[2]],['Main Stressors',c.print[3]],['Disclaimer',c.print[4]],['Suggested review timing',c.print[6]],['Other Issue Statement',c.print[7]],['Use Note',c.print[8]],['Name',c.fields[0]],['Work role',c.fields[1]],['Date',c.fields[2]],['Overall action priority',c.overall],['Main concern',c.mainConcern],['Guided Workplace Action Plan',c.guided],['CBI domain scores are used for workplace action planning. This is not a diagnosis or an official CBI severity classification.',c.resultMsg],['Urgent support is recommended because immediate safety, self-harm, immediate threat/violence, or severe functional impairment was selected.',c.urgentMsg],['Review timing is a tool action-priority algorithm and should be validated through Fuzzy Delphi Method before formal implementation.','Tempoh semakan ialah algoritma keutamaan tindakan alat ini dan perlu disahkan melalui Fuzzy Delphi Method sebelum pelaksanaan rasmi.'],['This report is for individual reflection and workplace support planning. It should complement, not replace, employer psychosocial risk assessment, occupational health advice, professional healthcare assessment, or future expert validation of the action-priority algorithm.','Laporan ini adalah untuk refleksi individu dan perancangan sokongan tempat kerja. Ia melengkapi, bukan menggantikan, pentaksiran risiko psikososial majikan, nasihat kesihatan pekerjaan, penilaian profesional kesihatan atau pengesahan pakar terhadap algoritma keutamaan tindakan.'],['Accessed 25 June 2026',c.print[9]]].forEach(([a,b])=>h=h.replaceAll(a,b));
       Object.entries(dict.en.domain).forEach(([k,v])=>h=h.replaceAll(v,c.domain[k])); Object.entries(dict.en.bands).forEach(([k,v])=>h=h.replaceAll(v,c.bands[k])); planBM.forEach(([a,b])=>h=h.replaceAll(a,b));
     }
     r.innerHTML=h;
