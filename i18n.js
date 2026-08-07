@@ -205,12 +205,12 @@
   function localizeStatic(){
     const c=C(), bm=lang()==='bm';
     document.documentElement.lang=bm?'ms':'en'; document.title=c.title;
-    text('.brand h1',c.title); html('.brand p',`${c.by}<br><a href="mailto:dr.suriya@moh.gov.my">dr.suriya@moh.gov.my</a>`);
+    html('.side-credit',`<strong>${c.by}</strong><br><a href="mailto:dr.suriya@moh.gov.my">dr.suriya@moh.gov.my</a>`);
     document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang()));
     [...$('mobileNav').options].forEach((o,i)=>o.textContent=c.mobile[i]||o.textContent);
     document.querySelectorAll('.nav a').forEach((a,i)=>last(a,c.nav[i]||a.textContent));
     text('.progress span:first-child',c.progress); text('.eyebrow',bm?'Alat digital individu bukan diagnostik':'Individual non-diagnostic digital tool'); text('.hero h2',c.title); text('.hero h2 + p',c.hero);
-    text('.hero-actions .green',c.startBtn); text('.hero-actions .ghost',c.what); document.querySelectorAll('.mini').forEach((m,i)=>last(m,c.minis[i]));
+    text('.hero-actions .green',c.startBtn); text('.hero-actions .ghost',c.what); document.querySelectorAll('.mini b').forEach((m,i)=>m.textContent=c.minis[i]||m.textContent);
     text('#cbi h2',c.cbiTitle); text('#cbi .muted',c.cbiText); document.querySelectorAll('#cbi .card').forEach((card,i)=>{text(`#cbi .card:nth-child(${i+1}) h3`,c.cards[i][0]);text(`#cbi .card:nth-child(${i+1}) p`,c.cards[i][1])});
     text('#about h2',c.beforeTitle); text('#about .muted',c.beforeText); const notes=document.querySelectorAll('#about .notice'); if(notes[0])notes[0].innerHTML=`<strong>${c.seekTitle}</strong><br>${c.seek}`; if(notes[1])notes[1].innerHTML=`<strong>${c.scoreHow}</strong><br>${c.scoreHowText}`;
     text('#details h2',c.printDetails); text('#details .muted',c.printDetailsText); document.querySelectorAll('#details .field-label').forEach((l,i)=>l.textContent=c.fields[i]); document.querySelectorAll('#details input[type=text]').forEach(i=>i.placeholder=c.optional);
@@ -238,7 +238,7 @@
   function patchPlan(){
     const c=C(); if(!document.querySelector('.action'))return;
     document.querySelectorAll('.action').forEach(a=>{const h=a.querySelector('h3'); if(h&&c.action[h.textContent]){const x=c.action[h.textContent]; h.textContent=x[0]; const k=a.querySelector('.kicker'); if(k)k.textContent=x[1]; const p=a.querySelector('.lead'); if(p)p.textContent=x[2];} const sum=a.querySelector('summary'); if(sum)sum.textContent=c.detailsMore;});
-    document.querySelectorAll('.visual').forEach(group=>group.querySelectorAll('.va').forEach((tile,i)=>{const icon=tile.querySelector('i'); if(icon)icon.textContent=String(i+1); if(lang()==='bm'){const strong=tile.querySelector('strong'), span=tile.querySelector('span'); const hit=strong&&visualBM[strong.textContent]; if(hit){strong.textContent=hit[0]; if(span)span.textContent=hit[1];}}}));
+    document.querySelectorAll('.visual').forEach(group=>group.querySelectorAll('.va').forEach(tile=>{const icon=tile.querySelector('i'), key=tile.dataset.action; if(icon&&key&&typeof window.stepIcon==='function')icon.innerHTML=window.stepIcon(key); if(lang()==='bm'){const strong=tile.querySelector('strong'), span=tile.querySelector('span'); const hit=key&&visualBM[key]; if(hit){if(strong)strong.textContent=hit[0]; if(span)span.textContent=hit[1];}}}));
     if(lang()==='bm')document.querySelectorAll('.details li').forEach(li=>{for(const [en,bm] of planBM){if(li.textContent===en){li.textContent=bm;break}}});
   }
   function patchPrint(){
