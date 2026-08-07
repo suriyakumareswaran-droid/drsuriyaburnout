@@ -5,8 +5,8 @@
       by:'Created by Dr Suriya Kumareswaran',
       langA:'English',
       langB:'Bahasa Malaysia',
-      nav:['Start','What is CBI?','Explanation','Questionnaire','Stressors','Results','Plan'],
-      mobile:['Start','What is CBI?','Explanation','Questionnaire','Stressors','Results','Action Plan + References'],
+      nav:['Start','What is CBI?','Explanation','Questionnaire','Stressors','Issue','Results','Plan'],
+      mobile:['Start','What is CBI?','Explanation','Questionnaire','Stressors','Other Issue','Results','Action Plan + References'],
       progress:'Question progress',
       hero:'Screen your CBI domains, identify practical workplace issues, and prepare a personal action plan that can be printed or saved.',
       startBtn:'Start Questionnaire',
@@ -86,8 +86,8 @@
       by:'Dihasilkan oleh Dr Suriya Kumareswaran',
       langA:'English',
       langB:'Bahasa Malaysia',
-      nav:['Mula','Apakah CBI?','Penerangan','Soal Selidik','Punca Tekanan','Keputusan','Pelan'],
-      mobile:['Mula','Apakah CBI?','Penerangan','Soal Selidik','Punca Tekanan','Keputusan','Pelan Tindakan + Rujukan'],
+      nav:['Mula','Apakah CBI?','Penerangan','Soal Selidik','Punca Tekanan','Isu','Keputusan','Pelan'],
+      mobile:['Mula','Apakah CBI?','Penerangan','Soal Selidik','Punca Tekanan','Isu Lain','Keputusan','Pelan Tindakan + Rujukan'],
       progress:'Kemajuan soalan',
       hero:'Saring domain CBI anda, kenal pasti isu kerja yang praktikal, dan sediakan pelan tindakan peribadi yang boleh dicetak atau disimpan.',
       startBtn:'Mula Soal Selidik',
@@ -214,10 +214,10 @@
     text('#cbi h2',c.cbiTitle); text('#cbi .muted',c.cbiText); document.querySelectorAll('#cbi .card').forEach((card,i)=>{text(`#cbi .card:nth-child(${i+1}) h3`,c.cards[i][0]);text(`#cbi .card:nth-child(${i+1}) p`,c.cards[i][1])});
     text('#about h2',c.beforeTitle); text('#about .muted',c.beforeText); const notes=document.querySelectorAll('#about .notice'); if(notes[0])notes[0].innerHTML=`<strong>${c.seekTitle}</strong><br>${c.seek}`; if(notes[1])notes[1].innerHTML=`<strong>${c.scoreHow}</strong><br>${c.scoreHowText}`;
     text('#details h2',c.printDetails); text('#details .muted',c.printDetailsText); document.querySelectorAll('#details .field-label').forEach((l,i)=>l.textContent=c.fields[i]); document.querySelectorAll('#details input[type=text]').forEach(i=>i.placeholder=c.optional);
-    text('#screening h2',c.nav[3]); text('#screening .muted',c.qText); text('#screening .pill',c.items19); document.querySelectorAll('.scale span').forEach((sp,i)=>sp.innerHTML=`${c.scale[i]}<br>${['Tahap Sangat Rendah','Tahap Rendah','Kadang Tinggi','Tahap tinggi','Tahap yang Sangat Tinggi'][i]}`);
+    text('#screening h2',c.nav[3]); text('#screening .muted',c.qText); text('#screening .pill',c.items19); document.querySelectorAll('.scale span').forEach((sp,i)=>sp.textContent=c.scale[i]);
     text('#stressors h2',c.stressTitle); text('#stressors .muted',c.stressText); const sl=document.querySelectorAll('#stressors .field-label'); if(sl[0])sl[0].textContent=c.impact; if(sl[1])sl[1].textContent=c.safetyConcern; [...$('impairment').options].forEach((o,i)=>o.textContent=c.impactOpts[i]); [...$('selfHarm').options].forEach((o,i)=>o.textContent=c.safetyOpts[i]);
     text('#output>.title h2',c.outputTitle); text('#output>.title .muted',c.outputText); text('#tab-results',c.tabResults); text('#tab-action',c.tabAction); text('#results h2',c.auto); text('#results .muted',c.autoText); text('#calculateBtn',c.calc); text('#completionNotice',c.complete);
-    const next=document.querySelector('.next p'); if(next)next.innerHTML=`<strong>${c.next}</strong> ${c.nextText}`; text('#viewPlanBtn',c.viewPlan); text('#plan h2',c.guided); text('#plan .muted',c.guidedText); text('#plan .pill',c.printReady); text('.own h3',c.otherTitle); text('.own p',c.otherText); text('.own .field-label',c.otherLabel); if($('ownActionPlan'))$('ownActionPlan').placeholder=c.otherPlaceholder; text('#action>.notice',c.finalNote); text('#printBtn',c.printBtn); text('#resetBtn',c.reset); text('#references h2',c.refs); text('#references .muted',c.refsText); text('.footer',c.footer);
+    const next=document.querySelector('.next p'); if(next)next.innerHTML=`<strong>${c.next}</strong> ${c.nextText}`; text('#viewPlanBtn',c.viewPlan); text('#plan h2',c.guided); text('#plan .muted',c.guidedText); text('#plan .pill',c.printReady); text('.own h3',c.otherTitle); text('.own p',c.otherText); text('.own .field-label',c.otherLabel); if($('ownActionPlan'))$('ownActionPlan').placeholder=c.otherPlaceholder; text('#action>.notice',c.finalNote); text('#printBtn',c.printBtn); text('#resetBtn',c.reset); text('#topResetBtn',c.reset); text('#references h2',c.refs); text('#references .muted',c.refsText); text('.footer',c.footer);
   }
   function patchQuestionnaire(){
     const bm=lang()==='bm';
