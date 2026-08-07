@@ -55,7 +55,7 @@
       nextText:'open your guided action plan, then print or save your personal copy.',
       viewPlan:'View My Action Plan',
       guided:'Guided Workplace Action Plan',
-      guidedText:'Each card is linked to your result score, selected stressors, or typed issue.',
+      guidedText:'Each card is linked to your result score, elevated question answers, selected stressors, or typed issue.',
       printReady:'Print ready',
       planEmpty:'Complete the questionnaire to generate a tailored action plan.',
       detailsMore:'Details / More information',
@@ -73,6 +73,7 @@
       domain:{personal:'Personal Burnout',work:'Work-Related Burnout',client:'Client / Patient-Related Burnout'},
       action:{
         'Urgent Safety Step':['Urgent Safety Step','Safety first','If safety is affected, get help before planning work changes.'],
+        'Question-Specific Action Plan':['Question-Specific Action Plan','Question-level guidance','Matched to each elevated questionnaire answer.'],
         'Individual Recovery Actions':['Individual Recovery Actions','Recharge','Start with recovery basics before adding more tasks.'],
         'Supervisor and Work Design Actions':['Supervisor and Work Design Actions','Work design','Make work lighter, clearer, and more predictable.'],
         'Client / Patient-Facing Support':['Client / Patient-Facing Support','Client-facing support','Support before and after emotionally demanding interactions.'],
@@ -136,7 +137,7 @@
       nextText:'buka pelan tindakan berpandu, kemudian cetak atau simpan salinan peribadi anda.',
       viewPlan:'Lihat Pelan Tindakan Saya',
       guided:'Pelan Tindakan Tempat Kerja Berpandu',
-      guidedText:'Setiap kad dipadankan dengan skor keputusan, punca tekanan yang dipilih atau isu yang ditaip.',
+      guidedText:'Setiap kad dipadankan dengan skor keputusan, jawapan soalan yang meningkat, punca tekanan yang dipilih atau isu yang ditaip.',
       printReady:'Sedia dicetak',
       planEmpty:'Lengkapkan soal selidik untuk menjana pelan tindakan yang disesuaikan.',
       detailsMore:'Maklumat lanjut',
@@ -154,6 +155,7 @@
       domain:{personal:'Kelesuan Peribadi',work:'Kelesuan Berkaitan Kerja',client:'Kelesuan Berkaitan Klien / Pesakit'},
       action:{
         'Urgent Safety Step':['Langkah Keselamatan Segera','Keselamatan dahulu','Jika keselamatan terjejas, dapatkan bantuan sebelum merancang perubahan kerja.'],
+        'Question-Specific Action Plan':['Pelan Tindakan Mengikut Soalan','Panduan mengikut soalan','Dipadankan dengan setiap jawapan soal selidik yang meningkat.'],
         'Individual Recovery Actions':['Tindakan Pemulihan Individu','Pemulihan diri','Mulakan dengan asas pemulihan sebelum menambah tuntutan baharu.'],
         'Supervisor and Work Design Actions':['Tindakan Penyelia dan Reka Bentuk Kerja','Reka bentuk kerja','Jadikan kerja lebih ringan, jelas dan boleh diramal.'],
         'Client / Patient-Facing Support':['Sokongan Kerja Berhadapan Klien / Pesakit','Sokongan klien/pesakit','Sokongan sebelum dan selepas interaksi yang menuntut emosi.'],
@@ -239,7 +241,7 @@
     const c=C(); if(!document.querySelector('.action'))return;
     document.querySelectorAll('.action').forEach(a=>{const h=a.querySelector('h3'); if(h&&c.action[h.textContent]){const x=c.action[h.textContent]; h.textContent=x[0]; const k=a.querySelector('.kicker'); if(k)k.textContent=x[1]; const p=a.querySelector('.lead'); if(p)p.textContent=x[2];} const sum=a.querySelector('summary'); if(sum)sum.textContent=c.detailsMore;});
     document.querySelectorAll('.visual').forEach(group=>group.querySelectorAll('.va').forEach(tile=>{const icon=tile.querySelector('i'), key=tile.dataset.action; if(icon&&key&&typeof window.stepIcon==='function')icon.innerHTML=window.stepIcon(key); if(lang()==='bm'){const strong=tile.querySelector('strong'), span=tile.querySelector('span'); const hit=key&&visualBM[key]; if(hit){if(strong)strong.textContent=hit[0]; if(span)span.textContent=hit[1];}}}));
-    if(lang()==='bm')document.querySelectorAll('.result-note').forEach(n=>{let h=n.innerHTML;[['Based on:','Berdasarkan:'],['Personal Burnout','Kelesuan Peribadi'],['Work-Related Burnout','Kelesuan Berkaitan Kerja'],['Client / Patient-Related Burnout','Kelesuan Berkaitan Klien / Pesakit'],['Safety or severe functional concern selected','Kebimbangan keselamatan atau fungsi kerja teruk telah dipilih'],['Other issue statement typed by user','Pernyataan isu lain yang ditaip oleh pengguna'],['Overall priority','Keutamaan keseluruhan'],['follow-up','susulan'],['Immediate','Segera'],['2 to 4 weeks','2 hingga 4 minggu'],['4 to 8 weeks','4 hingga 8 minggu'],['8 to 12 weeks','8 hingga 12 minggu'],['High','Tinggi'],['Moderate','Sederhana'],['Mild','Ringan'],['Low','Rendah']].forEach(([a,b])=>h=h.replaceAll(a,b));n.innerHTML=h;});
+    if(lang()==='bm')document.querySelectorAll('.result-note').forEach(n=>{let h=n.innerHTML;[['Based on:','Berdasarkan:'],['Personal Burnout','Kelesuan Peribadi'],['Work-Related Burnout','Kelesuan Berkaitan Kerja'],['Client / Patient-Related Burnout','Kelesuan Berkaitan Klien / Pesakit'],['Safety or severe functional concern selected','Kebimbangan keselamatan atau fungsi kerja teruk telah dipilih'],['Other issue statement typed by user','Pernyataan isu lain yang ditaip oleh pengguna'],['Each elevated questionnaire answer is mapped to guideline-based recovery, work design, support, referral or safety actions','Setiap jawapan soal selidik yang meningkat dipadankan dengan tindakan berasaskan garis panduan: pemulihan, reka bentuk kerja, sokongan, rujukan atau keselamatan'],['Overall priority','Keutamaan keseluruhan'],['follow-up','susulan'],['Immediate','Segera'],['2 to 4 weeks','2 hingga 4 minggu'],['4 to 8 weeks','4 hingga 8 minggu'],['8 to 12 weeks','8 hingga 12 minggu'],['High','Tinggi'],['Moderate','Sederhana'],['Mild','Ringan'],['Low','Rendah']].forEach(([a,b])=>h=h.replaceAll(a,b));n.innerHTML=h;});
     if(lang()==='bm')document.querySelectorAll('.details li').forEach(li=>{for(const [en,bm] of planBM){if(li.textContent===en){li.textContent=bm;break}}});
   }
   function patchPrint(){
