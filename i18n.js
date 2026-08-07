@@ -20,12 +20,12 @@
         ['Client / Patient Burnout','Exhaustion connected to client-facing, patient-facing, or emotionally demanding service work.']
       ],
       beforeTitle:'Before You Use',
-      beforeText:'This individual tool supports reflection, workplace discussion, and early action planning. It is not a medical diagnosis.',
+      beforeText:'This screening tool supports reflection, workplace discussion, and early action planning.',
       safetyNote:'Safety note',
       seekTitle:'When to seek help now',
       seek:'If there is immediate danger, self-harm concern, immediate threat or violence, or severe functional impairment where you cannot function safely, seek urgent support from healthcare, emergency services, occupational health, OSH, HR, or a trusted supervisor.',
       scoreHow:'How scoring works',
-      scoreHowText:'CBI domain scores are converted to 0-100. The displayed categories are action-priority bands for planning and support, not a medical diagnosis.',
+      scoreHowText:'CBI domain scores are converted to 0-100. The displayed categories are action-priority bands for planning and support.',
       printDetails:'Optional Details for Print',
       printDetailsText:'Leave blank if you prefer. These details stay on this device and appear only in your printed or saved copy.',
       fields:['Name','Work role / Unit','Screening date'],
@@ -44,13 +44,13 @@
       tabResults:'1. Results',
       tabAction:'2. Action Plan + Print',
       auto:'Automated Result',
-      autoText:'CBI scores are calculated automatically for action planning, not diagnosis.',
+      autoText:'CBI scores are calculated automatically to show which burnout domain needs the most attention.',
       calc:'Calculate Now',
       complete:'Answer all 19 questions to generate your result and action plan.',
       overall:'Overall action priority',
       mainConcern:'Main concern',
       urgentMsg:'Urgent support is recommended because immediate safety, self-harm, immediate threat/violence, or severe functional impairment was selected.',
-      resultMsg:'Your CBI domain scores are used to guide action planning. This is not a diagnosis or an official CBI severity classification.',
+      resultMsg:'This screening result highlights the burnout domain with the highest score. A higher score means the exhaustion pattern is stronger in that area, so the action plan focuses first on practical recovery and workplace support.',
       next:'Next:',
       nextText:'open your guided action plan, then print or save your personal copy.',
       viewPlan:'View My Action Plan',
@@ -80,7 +80,7 @@
         'Other Issue-Based Action Plan':['Other Issue-Based Action Plan','Issue matched','Stress, workload, safety, shift, conflict and other issues use different guidance.'],
         'Referral and Follow-Up':['Referral and Follow-Up','Follow-up','One check-in, one support step, and one review date.']
       },
-      print:['Personal report','Created by','Result Summary','Main Stressors','Disclaimer','This tool is for individual screening, workplace health education, and guided action planning. It is not a diagnosis and does not replace professional healthcare assessment.','Suggested review timing','Other Issue Statement','Use Note','Accessed 25 June 2026']
+      print:['Personal report','Created by','Result Summary','Main Stressors','Screening note','This tool is for individual screening, workplace health education, and guided action planning. It supports early reflection, practical workplace discussion and follow-up.','Suggested review timing','Other Issue Statement','Use Note','Accessed 25 June 2026']
     },
     bm:{
       title:'Alat Saringan Kelesuan dan Pelan Tindakan Tempat Kerja',
@@ -102,12 +102,12 @@
         ['Kelesuan Berkaitan Klien / Pesakit','Kelesuan yang berkait dengan tugasan berhadapan klien, pesakit atau situasi perkhidmatan yang menuntut emosi.']
       ],
       beforeTitle:'Sebelum Menggunakan Alat Ini',
-      beforeText:'Alat individu ini membantu refleksi, perbincangan di tempat kerja dan perancangan tindakan awal. Ia bukan diagnosis perubatan.',
+      beforeText:'Alat saringan ini membantu refleksi, perbincangan di tempat kerja dan perancangan tindakan awal.',
       safetyNote:'Nota keselamatan',
       seekTitle:'Bila perlu mendapatkan bantuan segera',
       seek:'Jika terdapat bahaya segera, kebimbangan mencederakan diri, ancaman atau keganasan segera, atau gangguan fungsi teruk sehingga tidak dapat berfungsi dengan selamat, dapatkan sokongan segera daripada perkhidmatan kesihatan, kecemasan, kesihatan pekerjaan, OSH/JKKP, HR atau penyelia yang dipercayai.',
       scoreHow:'Cara skor dikira',
-      scoreHowText:'Skor domain CBI ditukar kepada 0-100. Kategori yang dipaparkan ialah jalur keutamaan tindakan untuk perancangan dan sokongan, bukan diagnosis perubatan.',
+      scoreHowText:'Skor domain CBI ditukar kepada 0-100. Kategori yang dipaparkan ialah jalur keutamaan tindakan untuk perancangan dan sokongan.',
       printDetails:'Butiran Pilihan untuk Cetakan',
       printDetailsText:'Boleh dibiarkan kosong. Butiran ini kekal pada peranti ini dan hanya muncul dalam salinan yang dicetak atau disimpan.',
       fields:['Nama','Jawatan / Unit','Tarikh saringan'],
@@ -126,13 +126,13 @@
       tabResults:'1. Keputusan',
       tabAction:'2. Pelan Tindakan + Cetak',
       auto:'Keputusan Automatik',
-      autoText:'Skor CBI dikira secara automatik untuk perancangan tindakan, bukan diagnosis.',
+      autoText:'Skor CBI dikira secara automatik untuk menunjukkan domain kelesuan yang paling memerlukan perhatian.',
       calc:'Kira Sekarang',
       complete:'Jawab semua 19 soalan untuk menjana keputusan dan pelan tindakan.',
       overall:'Keutamaan tindakan keseluruhan',
       mainConcern:'Kebimbangan utama',
       urgentMsg:'Sokongan segera disyorkan kerana keselamatan segera, mencederakan diri, ancaman/keganasan segera atau gangguan fungsi teruk telah dipilih.',
-      resultMsg:'Skor domain CBI digunakan untuk membimbing perancangan tindakan. Ini bukan diagnosis atau klasifikasi tahap keterukan rasmi CBI.',
+      resultMsg:'Keputusan saringan ini menunjukkan domain kelesuan yang mendapat skor tertinggi. Skor yang lebih tinggi bermaksud corak kelesuan lebih ketara dalam domain tersebut, maka pelan tindakan memberi tumpuan awal kepada pemulihan praktikal dan sokongan tempat kerja.',
       next:'Seterusnya:',
       nextText:'buka pelan tindakan berpandu, kemudian cetak atau simpan salinan peribadi anda.',
       viewPlan:'Lihat Pelan Tindakan Saya',
@@ -162,7 +162,7 @@
         'Other Issue-Based Action Plan':['Pelan Tindakan Berdasarkan Isu Lain','Isu dipadankan','Tekanan, beban kerja, keselamatan, syif, konflik dan isu lain mempunyai panduan berbeza.'],
         'Referral and Follow-Up':['Rujukan dan Susulan','Susulan','Satu semakan, satu langkah sokongan dan satu tarikh susulan.']
       },
-      print:['Laporan peribadi','Dihasilkan oleh','Ringkasan Keputusan','Punca Tekanan Utama','Penafian','Alat ini adalah untuk saringan individu, pendidikan kesihatan tempat kerja dan perancangan tindakan berpandu. Ia bukan diagnosis dan tidak menggantikan penilaian profesional kesihatan.','Cadangan masa semakan','Pernyataan Isu Lain','Nota Penggunaan','Diakses 25 Jun 2026']
+      print:['Laporan peribadi','Dihasilkan oleh','Ringkasan Keputusan','Punca Tekanan Utama','Nota saringan','Alat ini adalah untuk saringan individu, pendidikan kesihatan tempat kerja dan perancangan tindakan berpandu. Ia menyokong refleksi awal, perbincangan praktikal di tempat kerja dan susulan.','Cadangan masa semakan','Pernyataan Isu Lain','Nota Penggunaan','Diakses 25 Jun 2026']
     }
   };
   const qBM={
@@ -265,7 +265,7 @@
   function patchPrint(){
     const c=C(); const r=$('printReport'); if(!r)return;
     let h=r.innerHTML; if(lang()==='bm'){
-      [['Burnout Screening and Workplace Action Plan Tool',c.title],['Personal report',c.print[0]],['Created by',c.print[1]],['Result Summary',c.print[2]],['Main Stressors',c.print[3]],['Disclaimer',c.print[4]],['Suggested review timing',c.print[6]],['Other Issue Statement',c.print[7]],['Use Note',c.print[8]],['Name',c.fields[0]],['Work role',c.fields[1]],['Date',c.fields[2]],['Overall action priority',c.overall],['Main concern',c.mainConcern],['Guided Workplace Action Plan',c.guided],['CBI domain scores are used for workplace action planning. This is not a diagnosis or an official CBI severity classification.',c.resultMsg],['Urgent support is recommended because immediate safety, self-harm, immediate threat/violence, or severe functional impairment was selected.',c.urgentMsg],['This report is for individual reflection and workplace support planning. It should complement, not replace, employer psychosocial risk assessment, occupational health advice, or professional healthcare assessment.','Laporan ini adalah untuk refleksi individu dan perancangan sokongan tempat kerja. Ia melengkapi, bukan menggantikan, pentaksiran risiko psikososial majikan, nasihat kesihatan pekerjaan atau penilaian profesional kesihatan.'],['Accessed 25 June 2026',c.print[9]]].forEach(([a,b])=>h=h.replaceAll(a,b));
+      [['Burnout Screening and Workplace Action Plan Tool',c.title],['Personal report',c.print[0]],['Created by',c.print[1]],['Result Summary',c.print[2]],['Main Stressors',c.print[3]],['Disclaimer',c.print[4]],['Screening note',c.print[4]],['Suggested review timing',c.print[6]],['Other Issue Statement',c.print[7]],['Use Note',c.print[8]],['Name',c.fields[0]],['Work role',c.fields[1]],['Date',c.fields[2]],['Overall action priority',c.overall],['Main concern',c.mainConcern],['Guided Workplace Action Plan',c.guided],['This screening result highlights the burnout domain with the highest score. A higher score means the exhaustion pattern is stronger in that area, so the action plan focuses first on practical recovery and workplace support.',c.resultMsg],['Urgent support is recommended because immediate safety, self-harm, immediate threat/violence, or severe functional impairment was selected.',c.urgentMsg],['This tool is for individual screening, workplace health education, and guided action planning. It supports early reflection, practical workplace discussion and follow-up.',c.print[5]],['This report is for individual reflection and workplace support planning. It should complement, not replace, employer psychosocial risk assessment, occupational health advice, or professional healthcare assessment.','Laporan ini adalah untuk refleksi individu dan perancangan sokongan tempat kerja. Gunakan laporan ini bersama proses pentaksiran risiko psikososial majikan, nasihat kesihatan pekerjaan atau penilaian profesional kesihatan apabila diperlukan.'],['Accessed 25 June 2026',c.print[9]]].forEach(([a,b])=>h=h.replaceAll(a,b));
       Object.entries(dict.en.domain).forEach(([k,v])=>h=h.replaceAll(v,c.domain[k])); Object.entries(dict.en.bands).forEach(([k,v])=>h=h.replaceAll(v,c.bands[k])); planBM.forEach(([a,b])=>h=h.replaceAll(a,b));
     }
     r.innerHTML=h;
