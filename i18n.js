@@ -139,7 +139,7 @@
       guidedText:'Setiap kad memberi ringkasan visual. Buka butiran hanya apabila diperlukan.',
       printReady:'Sedia dicetak',
       planEmpty:'Lengkapkan soal selidik untuk menjana pelan tindakan yang disesuaikan.',
-      detailsMore:'Butiran / Maklumat lanjut',
+      detailsMore:'Maklumat lanjut',
       otherTitle:'Isu Lain',
       otherText:'Taip isu tempat kerja lain yang tidak dinyatakan di atas. Alat ini akan menambah pelan tindakan berdasarkan pernyataan isu anda.',
       otherLabel:'Pernyataan isu lain',
@@ -179,6 +179,23 @@
     ['Repeat screening in Immediate.','Ulang saringan dengan segera.'],
     ['This action plan is for support and prevention. It is not medical treatment.','Pelan tindakan ini adalah untuk sokongan dan pencegahan. Ia bukan rawatan perubatan.']
   ];
+  const visualBM={
+    'Rest':['Rehat','Lindungi tidur, makan, minum dan waktu rehat.'],
+    'Breathe':['Pernafasan','Gunakan latihan menenangkan yang ringkas.'],
+    'Reduce load':['Kurangkan beban','Tangguhkan tuntutan yang tidak penting.'],
+    'Prioritise':['Keutamaan','Pilih perkara yang paling penting dahulu.'],
+    'Clarify role':['Jelaskan peranan','Persetujui perkara yang boleh ditangguhkan.'],
+    'Review schedule':['Semak jadual','Semak kerja lebih masa, syif dan rehat.'],
+    'Debrief':['Perbincangan kes','Bincang semula kes atau interaksi yang sukar.'],
+    'Rotate tasks':['Giliran tugas','Kongsi tugasan yang menuntut emosi tinggi.'],
+    'Skill support':['Sokongan kemahiran','Dapatkan bantuan komunikasi atau pengurusan konflik.'],
+    'Repeat screen':['Ulang saringan','Semak semula gejala kemudian.'],
+    'Seek support':['Dapatkan sokongan','Gunakan Program Bantuan Pekerja, kesihatan pekerjaan, klinik atau kaunseling.'],
+    'Set date':['Tetapkan tarikh','Tetapkan masa untuk menyemak kemajuan.'],
+    'Get help now':['Dapatkan bantuan','Gunakan sokongan kecemasan atau kesihatan.'],
+    'Tell someone':['Maklumkan seseorang','Hubungi individu yang dipercayai.'],
+    'Reduce danger':['Kurangkan bahaya','Jauhkan diri daripada risiko segera.']
+  };
   const $=id=>document.getElementById(id);
   const text=(sel,v)=>{const e=document.querySelector(sel);if(e)e.textContent=v};
   const html=(sel,v)=>{const e=document.querySelector(sel);if(e)e.innerHTML=v};
@@ -221,6 +238,7 @@
   function patchPlan(){
     const c=C(); if(!document.querySelector('.action'))return;
     document.querySelectorAll('.action').forEach(a=>{const h=a.querySelector('h3'); if(h&&c.action[h.textContent]){const x=c.action[h.textContent]; h.textContent=x[0]; const k=a.querySelector('.kicker'); if(k)k.textContent=x[1]; const p=a.querySelector('.lead'); if(p)p.textContent=x[2];} const sum=a.querySelector('summary'); if(sum)sum.textContent=c.detailsMore;});
+    document.querySelectorAll('.visual').forEach(group=>group.querySelectorAll('.va').forEach((tile,i)=>{const icon=tile.querySelector('i'); if(icon)icon.textContent=String(i+1); if(lang()==='bm'){const strong=tile.querySelector('strong'), span=tile.querySelector('span'); const hit=strong&&visualBM[strong.textContent]; if(hit){strong.textContent=hit[0]; if(span)span.textContent=hit[1];}}}));
     if(lang()==='bm')document.querySelectorAll('.details li').forEach(li=>{for(const [en,bm] of planBM){if(li.textContent===en){li.textContent=bm;break}}});
   }
   function patchPrint(){
