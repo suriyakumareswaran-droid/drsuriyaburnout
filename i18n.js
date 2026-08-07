@@ -44,7 +44,7 @@
       tabResults:'1. Results',
       tabAction:'2. Action Plan + Print',
       auto:'Automated Result',
-      autoText:'Scores are for planning, not diagnosis.',
+      autoText:'Scores are calculated automatically for planning, not diagnosis.',
       calc:'Calculate Now',
       complete:'Answer all 19 questions to generate your result and action plan.',
       overall:'Overall priority',
@@ -55,7 +55,7 @@
       nextText:'open your guided action plan, then print or save your personal copy.',
       viewPlan:'View My Action Plan',
       guided:'Guided Workplace Action Plan',
-      guidedText:'Each card gives a quick visual summary. Open details only when needed.',
+      guidedText:'Each card is linked to your result score, selected stressors, or typed issue.',
       printReady:'Print ready',
       planEmpty:'Complete the questionnaire to generate a tailored action plan.',
       detailsMore:'Details / More information',
@@ -125,7 +125,7 @@
       tabResults:'1. Keputusan',
       tabAction:'2. Pelan Tindakan + Cetak',
       auto:'Keputusan Automatik',
-      autoText:'Skor digunakan untuk perancangan, bukan diagnosis.',
+      autoText:'Skor dikira secara automatik untuk perancangan, bukan diagnosis.',
       calc:'Kira Sekarang',
       complete:'Jawab semua 19 soalan untuk menjana keputusan dan pelan tindakan.',
       overall:'Keutamaan keseluruhan',
@@ -136,7 +136,7 @@
       nextText:'buka pelan tindakan berpandu, kemudian cetak atau simpan salinan peribadi anda.',
       viewPlan:'Lihat Pelan Tindakan Saya',
       guided:'Pelan Tindakan Tempat Kerja Berpandu',
-      guidedText:'Setiap kad memberi ringkasan visual. Buka butiran hanya apabila diperlukan.',
+      guidedText:'Setiap kad dipadankan dengan skor keputusan, punca tekanan yang dipilih atau isu yang ditaip.',
       printReady:'Sedia dicetak',
       planEmpty:'Lengkapkan soal selidik untuk menjana pelan tindakan yang disesuaikan.',
       detailsMore:'Maklumat lanjut',
@@ -239,6 +239,7 @@
     const c=C(); if(!document.querySelector('.action'))return;
     document.querySelectorAll('.action').forEach(a=>{const h=a.querySelector('h3'); if(h&&c.action[h.textContent]){const x=c.action[h.textContent]; h.textContent=x[0]; const k=a.querySelector('.kicker'); if(k)k.textContent=x[1]; const p=a.querySelector('.lead'); if(p)p.textContent=x[2];} const sum=a.querySelector('summary'); if(sum)sum.textContent=c.detailsMore;});
     document.querySelectorAll('.visual').forEach(group=>group.querySelectorAll('.va').forEach(tile=>{const icon=tile.querySelector('i'), key=tile.dataset.action; if(icon&&key&&typeof window.stepIcon==='function')icon.innerHTML=window.stepIcon(key); if(lang()==='bm'){const strong=tile.querySelector('strong'), span=tile.querySelector('span'); const hit=key&&visualBM[key]; if(hit){if(strong)strong.textContent=hit[0]; if(span)span.textContent=hit[1];}}}));
+    if(lang()==='bm')document.querySelectorAll('.result-note').forEach(n=>{let h=n.innerHTML;[['Based on:','Berdasarkan:'],['Personal Burnout','Kelesuan Peribadi'],['Work-Related Burnout','Kelesuan Berkaitan Kerja'],['Client / Patient-Related Burnout','Kelesuan Berkaitan Klien / Pesakit'],['Safety or severe functional concern selected','Kebimbangan keselamatan atau fungsi kerja teruk telah dipilih'],['Other issue statement typed by user','Pernyataan isu lain yang ditaip oleh pengguna'],['Overall priority','Keutamaan keseluruhan'],['follow-up','susulan'],['Immediate','Segera'],['2 to 4 weeks','2 hingga 4 minggu'],['4 to 8 weeks','4 hingga 8 minggu'],['8 to 12 weeks','8 hingga 12 minggu'],['High','Tinggi'],['Moderate','Sederhana'],['Mild','Ringan'],['Low','Rendah']].forEach(([a,b])=>h=h.replaceAll(a,b));n.innerHTML=h;});
     if(lang()==='bm')document.querySelectorAll('.details li').forEach(li=>{for(const [en,bm] of planBM){if(li.textContent===en){li.textContent=bm;break}}});
   }
   function patchPrint(){
@@ -263,7 +264,7 @@
   if(typeof oldRender==='function')window.renderPlan=function(){oldRender();patchPlan();patchPrint()};
   if(typeof oldPrint==='function')window.updatePrint=function(){oldPrint();patchPrint()};
   document.addEventListener('click',e=>{
-    if(e.target.closest('#calculateBtn,#viewPlanBtn,#tab-results,#tab-action,[data-tab-link]')) setTimeout(patchAll,0);
+    if(e.target.closest('#viewPlanBtn,#tab-results,#tab-action,[data-tab-link]')) setTimeout(patchAll,0);
   });
   document.addEventListener('change',()=>setTimeout(patchAll,0));
   document.addEventListener('input',()=>setTimeout(patchAll,0));
