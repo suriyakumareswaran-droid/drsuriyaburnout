@@ -58,7 +58,7 @@
       guidedText:'Each card is linked to your result score, elevated question answers, selected stressors, or typed issue.',
       printReady:'Print ready',
       planEmpty:'Complete the questionnaire to generate a tailored action plan.',
-      detailsMore:'Details / More information',
+      detailsMore:'Compact summary',
       otherTitle:'Other Issue / Isu Lain',
       otherText:'Type any other workplace issue not captured above. The tool will add an issue-based action plan from your statement.',
       otherLabel:'Other issue statement / Pernyataan isu lain',
@@ -73,7 +73,7 @@
       domain:{personal:'Personal Burnout',work:'Work-Related Burnout',client:'Client / Patient-Related Burnout'},
       action:{
         'Urgent Safety Step':['Urgent Safety Step','Safety first','If safety is affected, get help before planning work changes.'],
-        'Question-Specific Action Plan':['Question-Specific Action Plan','Question-level guidance','Matched to each elevated questionnaire answer.'],
+        'Question-Specific Action Plan':['Question-Specific Action Plan','Question summary','Short summary of elevated answers and next steps.'],
         'Individual Recovery Actions':['Individual Recovery Actions','Recharge','Start with recovery basics before adding more tasks.'],
         'Supervisor and Work Design Actions':['Supervisor and Work Design Actions','Work design','Make work lighter, clearer, and more predictable.'],
         'Client / Patient-Facing Support':['Client / Patient-Facing Support','Client-facing support','Support before and after emotionally demanding interactions.'],
@@ -140,7 +140,7 @@
       guidedText:'Setiap kad dipadankan dengan skor keputusan, jawapan soalan yang meningkat, punca tekanan yang dipilih atau isu yang ditaip.',
       printReady:'Sedia dicetak',
       planEmpty:'Lengkapkan soal selidik untuk menjana pelan tindakan yang disesuaikan.',
-      detailsMore:'Maklumat lanjut',
+      detailsMore:'Ringkasan padat',
       otherTitle:'Isu Lain',
       otherText:'Taip isu tempat kerja lain yang tidak dinyatakan di atas. Alat ini akan menambah pelan tindakan berdasarkan pernyataan isu anda.',
       otherLabel:'Pernyataan isu lain',
@@ -155,7 +155,7 @@
       domain:{personal:'Kelesuan Peribadi',work:'Kelesuan Berkaitan Kerja',client:'Kelesuan Berkaitan Klien / Pesakit'},
       action:{
         'Urgent Safety Step':['Langkah Keselamatan Segera','Keselamatan dahulu','Jika keselamatan terjejas, dapatkan bantuan sebelum merancang perubahan kerja.'],
-        'Question-Specific Action Plan':['Pelan Tindakan Mengikut Soalan','Panduan mengikut soalan','Dipadankan dengan setiap jawapan soal selidik yang meningkat.'],
+        'Question-Specific Action Plan':['Pelan Tindakan Mengikut Soalan','Ringkasan soalan','Ringkasan pendek jawapan meningkat dan langkah seterusnya.'],
         'Individual Recovery Actions':['Tindakan Pemulihan Individu','Pemulihan diri','Mulakan dengan asas pemulihan sebelum menambah tuntutan baharu.'],
         'Supervisor and Work Design Actions':['Tindakan Penyelia dan Reka Bentuk Kerja','Reka bentuk kerja','Jadikan kerja lebih ringan, jelas dan boleh diramal.'],
         'Client / Patient-Facing Support':['Sokongan Kerja Berhadapan Klien / Pesakit','Sokongan klien/pesakit','Sokongan sebelum dan selepas interaksi yang menuntut emosi.'],
@@ -175,11 +175,29 @@
   const planBM=[
     ['Seek immediate support from a qualified healthcare professional, nearest Emergency Department, Klinik Kesihatan, occupational health service, or local emergency services.','Dapatkan sokongan segera daripada profesional kesihatan, Jabatan Kecemasan terdekat, Klinik Kesihatan, perkhidmatan kesihatan pekerjaan atau perkhidmatan kecemasan setempat.'],
     ['If there is immediate danger, do not wait for workplace review. Prioritise personal safety and urgent care.','Jika terdapat bahaya segera, jangan tunggu semakan tempat kerja. Utamakan keselamatan diri dan rawatan segera.'],
+    ['Inform a trusted person or supervisor if safe to do so.','Maklumkan individu yang dipercayai atau penyelia jika selamat untuk berbuat demikian.'],
     ['Protect recovery time: plan sleep, rest breaks, hydration, meals, and decompression after demanding work.','Lindungi masa pemulihan: rancang tidur, rehat, hidrasi, makan dan masa bertenang selepas kerja mencabar.'],
+    ['Use short stress-management practices such as slow breathing, grounding, prayer or reflection, light physical activity, or relaxation.','Gunakan amalan pengurusan tekanan ringkas seperti pernafasan perlahan, grounding, doa atau refleksi, aktiviti fizikal ringan atau relaksasi.'],
+    ['Reduce avoidable non-work overload temporarily while the work plan is being adjusted.','Kurangkan sementara beban bukan kerja yang boleh dielakkan semasa pelan kerja diselaraskan.'],
+    ['Consider medical or mental health assessment if exhaustion is persistent, worsening, or linked with low mood, anxiety, or physical symptoms.','Pertimbangkan penilaian kesihatan atau kesihatan mental jika keletihan berterusan, semakin teruk atau berkait dengan mood rendah, keresahan atau gejala fizikal.'],
     ['Discuss one or two priority stressors with a supervisor, occupational health, OSH, HR, or trusted workplace support person.','Bincangkan satu atau dua punca tekanan utama dengan penyelia, kesihatan pekerjaan, OSH/JKKP, HR atau individu sokongan tempat kerja yang dipercayai.'],
-    ['Use peer debriefing after emotionally difficult interactions, cases, or complaints.','Gunakan debrief rakan sekerja selepas interaksi, kes atau aduan yang mencabar emosi.'],
+    ['Review workload, deadlines, role clarity, task prioritisation, and the balance between demand and resources.','Semak beban kerja, tarikh akhir, kejelasan peranan, keutamaan tugas serta keseimbangan antara tuntutan dan sumber.'],
+    ['Agree on a follow-up date and one practical change that can be reviewed.','Persetujui satu tarikh susulan dan satu perubahan praktikal yang boleh disemak.'],
+    ['For workload: identify essential tasks, defer non-urgent tasks where feasible, and review staffing or task distribution.','Untuk beban kerja: kenal pasti tugas penting, tangguhkan tugas tidak segera jika boleh, dan semak staf atau pembahagian tugas.'],
+    ['For low control: request clearer decision space, predictable scheduling, or shared priority planning.','Untuk kawalan kerja rendah: mohon ruang keputusan yang lebih jelas, jadual yang boleh diramal atau perancangan keutamaan bersama.'],
+    ['For role conflict: clarify responsibilities, escalation routes, and what can be safely deprioritised.','Untuk konflik peranan: jelaskan tanggungjawab, laluan eskalasi dan perkara yang boleh diturunkan keutamaan dengan selamat.'],
+    ['For shift work or overtime: review rest periods, overtime pattern, night duties, and recovery between shifts.','Untuk kerja syif atau kerja lebih masa: semak tempoh rehat, corak kerja lebih masa, tugas malam dan pemulihan antara syif.'],
+    ['Use peer debriefing after emotionally difficult interactions, cases, or complaints.','Gunakan perbincangan rakan sekerja selepas interaksi, kes atau aduan yang mencabar emosi.'],
+    ['Where feasible, rotate high-emotional-demand duties and build short recovery pauses between intense tasks.','Jika boleh, gilirkan tugas yang menuntut emosi tinggi dan sediakan rehat pemulihan ringkas antara tugas intensif.'],
+    ['Request communication, de-escalation, trauma-informed care, or conflict-management support if client-facing demand is a main stressor.','Mohon sokongan komunikasi, de-eskalasi, penjagaan berasaskan trauma atau pengurusan konflik jika tuntutan berhadapan klien/pesakit ialah punca tekanan utama.'],
     ['Repeat screening in Immediate.','Ulang saringan dengan segera.'],
-    ['This action plan is for support and prevention. It is not medical treatment.','Pelan tindakan ini adalah untuk sokongan dan pencegahan. Ia bukan rawatan perubatan.']
+    ['Repeat screening in 2 to 4 weeks.','Ulang saringan dalam 2 hingga 4 minggu.'],
+    ['Repeat screening in 4 to 8 weeks.','Ulang saringan dalam 4 hingga 8 minggu.'],
+    ['Repeat screening in 8 to 12 weeks.','Ulang saringan dalam 8 hingga 12 minggu.'],
+    ['Consider Employee Assistance Programme, counselling, occupational health, Klinik Kesihatan, or a mental health professional if symptoms persist or functioning is affected.','Pertimbangkan Program Bantuan Pekerja, kaunseling, kesihatan pekerjaan, Klinik Kesihatan atau profesional kesihatan mental jika gejala berterusan atau fungsi kerja terjejas.'],
+    ['This action plan is for support and prevention. It is not medical treatment.','Pelan tindakan ini adalah untuk sokongan dan pencegahan. Ia bukan rawatan perubatan.'],
+    ['Moderate functional impact: consider earlier professional assessment and temporary work adjustment.','Kesan fungsi sederhana: pertimbangkan penilaian profesional lebih awal dan pelarasan kerja sementara.'],
+    ['Bullying, harassment, or violence: follow workplace reporting and safety procedures. Seek support from OSH, HR, supervisor, union or staff representative, or relevant authority as appropriate.','Buli, gangguan atau keganasan: ikut prosedur pelaporan dan keselamatan tempat kerja. Dapatkan sokongan daripada OSH/JKKP, HR, penyelia, kesatuan atau wakil pekerja, atau pihak berkuasa berkaitan mengikut kesesuaian.']
   ];
   const visualBM={
     'Rest':['Rehat','Lindungi tidur, makan, minum dan waktu rehat.'],
@@ -241,7 +259,7 @@
     const c=C(); if(!document.querySelector('.action'))return;
     document.querySelectorAll('.action').forEach(a=>{const h=a.querySelector('h3'); if(h&&c.action[h.textContent]){const x=c.action[h.textContent]; h.textContent=x[0]; const k=a.querySelector('.kicker'); if(k)k.textContent=x[1]; const p=a.querySelector('.lead'); if(p)p.textContent=x[2];} const sum=a.querySelector('summary'); if(sum)sum.textContent=c.detailsMore;});
     document.querySelectorAll('.visual').forEach(group=>group.querySelectorAll('.va').forEach(tile=>{const icon=tile.querySelector('i'), key=tile.dataset.action; if(icon&&key&&typeof window.stepIcon==='function')icon.innerHTML=window.stepIcon(key); if(lang()==='bm'){const strong=tile.querySelector('strong'), span=tile.querySelector('span'); const hit=key&&visualBM[key]; if(hit){if(strong)strong.textContent=hit[0]; if(span)span.textContent=hit[1];}}}));
-    if(lang()==='bm')document.querySelectorAll('.result-note').forEach(n=>{let h=n.innerHTML;[['Based on:','Berdasarkan:'],['Personal Burnout','Kelesuan Peribadi'],['Work-Related Burnout','Kelesuan Berkaitan Kerja'],['Client / Patient-Related Burnout','Kelesuan Berkaitan Klien / Pesakit'],['Safety or severe functional concern selected','Kebimbangan keselamatan atau fungsi kerja teruk telah dipilih'],['Other issue statement typed by user','Pernyataan isu lain yang ditaip oleh pengguna'],['Typed issue matched to issue-specific guideline actions','Isu yang ditaip dipadankan dengan tindakan khusus mengikut isu dan berasaskan garis panduan'],['Each elevated questionnaire answer is mapped to guideline-based recovery, work design, support, referral or safety actions','Setiap jawapan soal selidik yang meningkat dipadankan dengan tindakan berasaskan garis panduan: pemulihan, reka bentuk kerja, sokongan, rujukan atau keselamatan'],['Overall priority','Keutamaan keseluruhan'],['follow-up','susulan'],['Immediate','Segera'],['2 to 4 weeks','2 hingga 4 minggu'],['4 to 8 weeks','4 hingga 8 minggu'],['8 to 12 weeks','8 hingga 12 minggu'],['High','Tinggi'],['Moderate','Sederhana'],['Mild','Ringan'],['Low','Rendah']].forEach(([a,b])=>h=h.replaceAll(a,b));n.innerHTML=h;});
+    if(lang()==='bm')document.querySelectorAll('.result-note').forEach(n=>{let h=n.innerHTML;[['Based on:','Berdasarkan:'],['Personal Burnout','Kelesuan Peribadi'],['Work-Related Burnout','Kelesuan Berkaitan Kerja'],['Client / Patient-Related Burnout','Kelesuan Berkaitan Klien / Pesakit'],['Safety or severe functional concern selected','Kebimbangan keselamatan atau fungsi kerja teruk telah dipilih'],['Other issue statement typed by user','Pernyataan isu lain yang ditaip oleh pengguna'],['Typed issue matched to issue-specific actions','Isu yang ditaip dipadankan dengan tindakan khusus mengikut isu'],['Elevated answers summarised into practical next steps','Jawapan yang meningkat diringkaskan kepada langkah praktikal seterusnya'],['Overall priority','Keutamaan keseluruhan'],['follow-up','susulan'],['Immediate','Segera'],['Urgent','Segera'],['2 to 4 weeks','2 hingga 4 minggu'],['4 to 8 weeks','4 hingga 8 minggu'],['8 to 12 weeks','8 hingga 12 minggu'],['High','Tinggi'],['Moderate','Sederhana'],['Mild','Ringan'],['Low','Rendah']].forEach(([a,b])=>h=h.replaceAll(a,b));n.innerHTML=h;});
     if(lang()==='bm')document.querySelectorAll('.details li').forEach(li=>{for(const [en,bm] of planBM){if(li.textContent===en){li.textContent=bm;break}}});
   }
   function patchPrint(){
