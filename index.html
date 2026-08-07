@@ -152,7 +152,7 @@ function activate(tab,scroll=false){document.querySelectorAll('[data-tab]').forE
 function bind(){document.addEventListener('change',e=>{let t=e.target;if(t.matches('input[type=radio][data-qid]'))state.answers[t.dataset.qid]=t.value;if(t.matches('#stressorList input[type=checkbox]'))state.stressors=[...document.querySelectorAll('#stressorList input:checked')].map(i=>i.value);if(t.matches('input,select,textarea'))updateResults()});document.addEventListener('input',e=>{if(e.target.matches('input[type=text],textarea')){save();renderPlan();updatePrint()}});document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>activate(b.dataset.tab)));document.querySelectorAll('[data-tab-link]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();activate(a.dataset.tabLink,true)}));$('mobileNav').addEventListener('change',e=>{let v=e.target.value;if(v.startsWith('tab:'))activate(v.replace('tab:',''),true);else document.querySelector(v)?.scrollIntoView({behavior:'smooth',block:'start'})});$('calculateBtn')?.addEventListener('click',updateResults);$('viewPlanBtn').addEventListener('click',()=>activate('action',true));$('printBtn').addEventListener('click',()=>{updateResults();window.print()});$('resetBtn').addEventListener('click',reset);$('topResetBtn')?.addEventListener('click',reset)}
 function init(){renderQ();renderStressors();$('screeningDate').value=new Date().toISOString().slice(0,10);load();bind();activate('results');updateResults()}init();
 </script>
-<script src="i18n.js?v=20260807-urgent-bm"></script>
+<script src="i18n.js?v=20260807-urgent-bm-5a4c32d"></script>
 </body>
 </html>
 
