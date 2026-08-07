@@ -32,7 +32,7 @@
       optional:'Optional',
       qText:'Choose one answer for every question based on the degree stated.',
       items19:'19 items',
-      scale:['To a Very Low Degree<br>Tahap Sangat Rendah','To a Low Degree<br>Tahap Rendah','Somewhat High<br>Kadang Tinggi','To a High Degree<br>Tahap tinggi','To a Very High Degree<br>Tahap yang Sangat Tinggi'],
+      scale:['To a Very Low Degree','To a Low Degree','Somewhat High','To a High Degree','To a Very High Degree'],
       stressTitle:'Workplace Stressors and Safety',
       stressText:'Select any current issues. These help shape the action plan.',
       impact:'Current functional impact',
