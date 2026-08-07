@@ -77,10 +77,10 @@
         'Individual Recovery Actions':['Individual Recovery Actions','Recharge','Start with recovery basics before adding more tasks.'],
         'Supervisor and Work Design Actions':['Supervisor and Work Design Actions','Work design','Make work lighter, clearer, and more predictable.'],
         'Client / Patient-Facing Support':['Client / Patient-Facing Support','Client-facing support','Support before and after emotionally demanding interactions.'],
-        'Other Issue-Based Action Plan':['Other Issue-Based Action Plan','Work design','Make work lighter, clearer, and more predictable.'],
+        'Other Issue-Based Action Plan':['Other Issue-Based Action Plan','Issue matched','Stress, workload, safety, shift, conflict and other issues use different guidance.'],
         'Referral and Follow-Up':['Referral and Follow-Up','Follow-up','One check-in, one support step, and one review date.']
       },
-      print:['Individual non-diagnostic report','Created by','Result Summary','Main Stressors','Disclaimer','This tool is for individual screening, workplace health education, and guided action planning. It is not a diagnosis and does not replace professional healthcare assessment.','Follow-up','Other Issue Statement','Use Note','Accessed 25 June 2026']
+      print:['Personal report','Created by','Result Summary','Main Stressors','Disclaimer','This tool is for individual screening, workplace health education, and guided action planning. It is not a diagnosis and does not replace professional healthcare assessment.','Follow-up','Other Issue Statement','Use Note','Accessed 25 June 2026']
     },
     bm:{
       title:'Alat Saringan Kelesuan dan Pelan Tindakan Tempat Kerja',
@@ -159,10 +159,10 @@
         'Individual Recovery Actions':['Tindakan Pemulihan Individu','Pemulihan diri','Mulakan dengan asas pemulihan sebelum menambah tuntutan baharu.'],
         'Supervisor and Work Design Actions':['Tindakan Penyelia dan Reka Bentuk Kerja','Reka bentuk kerja','Jadikan kerja lebih ringan, jelas dan boleh diramal.'],
         'Client / Patient-Facing Support':['Sokongan Kerja Berhadapan Klien / Pesakit','Sokongan klien/pesakit','Sokongan sebelum dan selepas interaksi yang menuntut emosi.'],
-        'Other Issue-Based Action Plan':['Pelan Tindakan Berdasarkan Isu Lain','Reka bentuk kerja','Jadikan kerja lebih ringan, jelas dan boleh diramal.'],
+        'Other Issue-Based Action Plan':['Pelan Tindakan Berdasarkan Isu Lain','Isu dipadankan','Tekanan, beban kerja, keselamatan, syif, konflik dan isu lain mempunyai panduan berbeza.'],
         'Referral and Follow-Up':['Rujukan dan Susulan','Susulan','Satu semakan, satu langkah sokongan dan satu tarikh susulan.']
       },
-      print:['Laporan individu bukan diagnostik','Dihasilkan oleh','Ringkasan Keputusan','Punca Tekanan Utama','Penafian','Alat ini adalah untuk saringan individu, pendidikan kesihatan tempat kerja dan perancangan tindakan berpandu. Ia bukan diagnosis dan tidak menggantikan penilaian profesional kesihatan.','Susulan','Pernyataan Isu Lain','Nota Penggunaan','Diakses 25 Jun 2026']
+      print:['Laporan peribadi','Dihasilkan oleh','Ringkasan Keputusan','Punca Tekanan Utama','Penafian','Alat ini adalah untuk saringan individu, pendidikan kesihatan tempat kerja dan perancangan tindakan berpandu. Ia bukan diagnosis dan tidak menggantikan penilaian profesional kesihatan.','Susulan','Pernyataan Isu Lain','Nota Penggunaan','Diakses 25 Jun 2026']
     }
   };
   const qBM={
@@ -211,7 +211,7 @@
     document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang()));
     [...$('mobileNav').options].forEach((o,i)=>o.textContent=c.mobile[i]||o.textContent);
     document.querySelectorAll('.nav a').forEach((a,i)=>last(a,c.nav[i]||a.textContent));
-    text('.progress span:first-child',c.progress); text('.eyebrow',bm?'Alat digital individu bukan diagnostik':'Individual non-diagnostic digital tool'); text('.hero h2',c.title); text('.hero h2 + p',c.hero);
+    text('.progress span:first-child',c.progress); text('.hero h2',c.title); text('.hero h2 + p',c.hero);
     text('.hero-actions .green',c.startBtn); text('.hero-actions .ghost',c.what); document.querySelectorAll('.mini b').forEach((m,i)=>m.textContent=c.minis[i]||m.textContent);
     text('#cbi h2',c.cbiTitle); text('#cbi .muted',c.cbiText); document.querySelectorAll('#cbi .card').forEach((card,i)=>{text(`#cbi .card:nth-child(${i+1}) h3`,c.cards[i][0]);text(`#cbi .card:nth-child(${i+1}) p`,c.cards[i][1])});
     text('#about h2',c.beforeTitle); text('#about .muted',c.beforeText); const notes=document.querySelectorAll('#about .notice'); if(notes[0])notes[0].innerHTML=`<strong>${c.seekTitle}</strong><br>${c.seek}`; if(notes[1])notes[1].innerHTML=`<strong>${c.scoreHow}</strong><br>${c.scoreHowText}`;
@@ -241,13 +241,13 @@
     const c=C(); if(!document.querySelector('.action'))return;
     document.querySelectorAll('.action').forEach(a=>{const h=a.querySelector('h3'); if(h&&c.action[h.textContent]){const x=c.action[h.textContent]; h.textContent=x[0]; const k=a.querySelector('.kicker'); if(k)k.textContent=x[1]; const p=a.querySelector('.lead'); if(p)p.textContent=x[2];} const sum=a.querySelector('summary'); if(sum)sum.textContent=c.detailsMore;});
     document.querySelectorAll('.visual').forEach(group=>group.querySelectorAll('.va').forEach(tile=>{const icon=tile.querySelector('i'), key=tile.dataset.action; if(icon&&key&&typeof window.stepIcon==='function')icon.innerHTML=window.stepIcon(key); if(lang()==='bm'){const strong=tile.querySelector('strong'), span=tile.querySelector('span'); const hit=key&&visualBM[key]; if(hit){if(strong)strong.textContent=hit[0]; if(span)span.textContent=hit[1];}}}));
-    if(lang()==='bm')document.querySelectorAll('.result-note').forEach(n=>{let h=n.innerHTML;[['Based on:','Berdasarkan:'],['Personal Burnout','Kelesuan Peribadi'],['Work-Related Burnout','Kelesuan Berkaitan Kerja'],['Client / Patient-Related Burnout','Kelesuan Berkaitan Klien / Pesakit'],['Safety or severe functional concern selected','Kebimbangan keselamatan atau fungsi kerja teruk telah dipilih'],['Other issue statement typed by user','Pernyataan isu lain yang ditaip oleh pengguna'],['Each elevated questionnaire answer is mapped to guideline-based recovery, work design, support, referral or safety actions','Setiap jawapan soal selidik yang meningkat dipadankan dengan tindakan berasaskan garis panduan: pemulihan, reka bentuk kerja, sokongan, rujukan atau keselamatan'],['Overall priority','Keutamaan keseluruhan'],['follow-up','susulan'],['Immediate','Segera'],['2 to 4 weeks','2 hingga 4 minggu'],['4 to 8 weeks','4 hingga 8 minggu'],['8 to 12 weeks','8 hingga 12 minggu'],['High','Tinggi'],['Moderate','Sederhana'],['Mild','Ringan'],['Low','Rendah']].forEach(([a,b])=>h=h.replaceAll(a,b));n.innerHTML=h;});
+    if(lang()==='bm')document.querySelectorAll('.result-note').forEach(n=>{let h=n.innerHTML;[['Based on:','Berdasarkan:'],['Personal Burnout','Kelesuan Peribadi'],['Work-Related Burnout','Kelesuan Berkaitan Kerja'],['Client / Patient-Related Burnout','Kelesuan Berkaitan Klien / Pesakit'],['Safety or severe functional concern selected','Kebimbangan keselamatan atau fungsi kerja teruk telah dipilih'],['Other issue statement typed by user','Pernyataan isu lain yang ditaip oleh pengguna'],['Typed issue matched to issue-specific guideline actions','Isu yang ditaip dipadankan dengan tindakan khusus mengikut isu dan berasaskan garis panduan'],['Each elevated questionnaire answer is mapped to guideline-based recovery, work design, support, referral or safety actions','Setiap jawapan soal selidik yang meningkat dipadankan dengan tindakan berasaskan garis panduan: pemulihan, reka bentuk kerja, sokongan, rujukan atau keselamatan'],['Overall priority','Keutamaan keseluruhan'],['follow-up','susulan'],['Immediate','Segera'],['2 to 4 weeks','2 hingga 4 minggu'],['4 to 8 weeks','4 hingga 8 minggu'],['8 to 12 weeks','8 hingga 12 minggu'],['High','Tinggi'],['Moderate','Sederhana'],['Mild','Ringan'],['Low','Rendah']].forEach(([a,b])=>h=h.replaceAll(a,b));n.innerHTML=h;});
     if(lang()==='bm')document.querySelectorAll('.details li').forEach(li=>{for(const [en,bm] of planBM){if(li.textContent===en){li.textContent=bm;break}}});
   }
   function patchPrint(){
     const c=C(); const r=$('printReport'); if(!r)return;
     let h=r.innerHTML; if(lang()==='bm'){
-      [['Burnout Screening and Workplace Action Plan Tool',c.title],['Individual non-diagnostic report',c.print[0]],['Created by',c.print[1]],['Result Summary',c.print[2]],['Main Stressors',c.print[3]],['Disclaimer',c.print[4]],['Follow-up',c.print[6]],['Other Issue Statement',c.print[7]],['Use Note',c.print[8]],['Name',c.fields[0]],['Work role',c.fields[1]],['Date',c.fields[2]],['Overall priority',c.overall],['Main concern',c.mainConcern],['Guided Workplace Action Plan',c.guided],['Accessed 25 June 2026',c.print[9]]].forEach(([a,b])=>h=h.replaceAll(a,b));
+      [['Burnout Screening and Workplace Action Plan Tool',c.title],['Personal report',c.print[0]],['Created by',c.print[1]],['Result Summary',c.print[2]],['Main Stressors',c.print[3]],['Disclaimer',c.print[4]],['Follow-up',c.print[6]],['Other Issue Statement',c.print[7]],['Use Note',c.print[8]],['Name',c.fields[0]],['Work role',c.fields[1]],['Date',c.fields[2]],['Overall priority',c.overall],['Main concern',c.mainConcern],['Guided Workplace Action Plan',c.guided],['Accessed 25 June 2026',c.print[9]]].forEach(([a,b])=>h=h.replaceAll(a,b));
       Object.entries(dict.en.domain).forEach(([k,v])=>h=h.replaceAll(v,c.domain[k])); Object.entries(dict.en.bands).forEach(([k,v])=>h=h.replaceAll(v,c.bands[k])); planBM.forEach(([a,b])=>h=h.replaceAll(a,b));
     }
     r.innerHTML=h;
