@@ -30,9 +30,9 @@
       printDetailsText:'Leave blank if you prefer. These details stay on this device and appear only in your printed or saved copy.',
       fields:['Name','Work role / Unit','Screening date'],
       optional:'Optional',
-      qText:'Choose one answer for every question. The tool uses the correct CBI response format for each item.',
+      qText:'Choose one answer for every question based on the degree stated.',
       items19:'19 items',
-      scale:[['Frequency items','Always / Often / Sometimes / Seldom / Never or almost never'],['Degree items','To a very high degree / To a high degree / Somewhat / To a low degree / To a very low degree']],
+      scale:['To a Very Low Degree<br>Tahap Sangat Rendah','To a Low Degree<br>Tahap Rendah','Somewhat High<br>Kadang Tinggi','To a High Degree<br>Tahap tinggi','To a Very High Degree<br>Tahap yang Sangat Tinggi'],
       stressTitle:'Workplace Stressors and Safety',
       stressText:'Select any current issues. These help shape the action plan.',
       impact:'Current functional impact',
@@ -112,9 +112,9 @@
       printDetailsText:'Boleh dibiarkan kosong. Butiran ini kekal pada peranti ini dan hanya muncul dalam salinan yang dicetak atau disimpan.',
       fields:['Nama','Jawatan / Unit','Tarikh saringan'],
       optional:'Pilihan',
-      qText:'Pilih satu jawapan untuk setiap soalan. Alat ini menggunakan format respons CBI yang betul mengikut jenis item.',
+      qText:'Pilih satu jawapan bagi setiap soalan berdasarkan tahap yang dinyatakan.',
       items19:'19 item',
-      scale:[['Item kekerapan','Sentiasa / Kerap / Kadang-kadang / Jarang / Tidak pernah atau hampir tidak pernah'],['Item tahap','Tahap sangat tinggi / Tahap tinggi / Sederhana / Tahap rendah / Tahap sangat rendah']],
+      scale:['Tahap Sangat Rendah','Tahap Rendah','Kadang Tinggi','Tahap tinggi','Tahap yang Sangat Tinggi'],
       stressTitle:'Punca Tekanan Kerja dan Keselamatan',
       stressText:'Pilih isu semasa yang berkaitan. Pilihan ini membantu membentuk pelan tindakan.',
       impact:'Kesan semasa terhadap fungsi kerja',
@@ -165,7 +165,6 @@
       print:['Laporan peribadi','Dihasilkan oleh','Ringkasan Keputusan','Punca Tekanan Utama','Penafian','Alat ini adalah untuk saringan individu, pendidikan kesihatan tempat kerja dan perancangan tindakan berpandu. Ia bukan diagnosis dan tidak menggantikan penilaian profesional kesihatan.','Cadangan masa semakan','Pernyataan Isu Lain','Nota Penggunaan','Diakses 25 Jun 2026']
     }
   };
-  const responseLabelBM={frequency:['Sentiasa','Kerap','Kadang-kadang','Jarang','Tidak pernah'],degree:['Tahap sangat tinggi','Tahap tinggi','Sederhana','Tahap rendah','Tahap sangat rendah']};
   const qBM={
     personal:['Berapa kerap anda berasa letih?','Berapa kerap anda berasa letih secara fizikal?','Berapa kerap anda berasa letih secara emosi?','Berapa kerap anda berfikir: "Saya sudah tidak sanggup meneruskannya?"','Berapa kerap anda berasa lesu?','Berapa kerap anda berasa lemah dan mudah jatuh sakit?'],
     work:['Adakah kerja anda meletihkan emosi anda?','Adakah anda berasa lesu upaya disebabkan pekerjaan anda?','Adakah pekerjaan anda menyebabkan anda berasa kecewa?','Adakah anda berasa lesu pada akhir hari bekerja?','Adakah anda berasa letih pada waktu pagi apabila memikirkan satu lagi hari bekerja?','Adakah setiap jam bekerja terasa memenatkan bagi anda?','Adakah anda mempunyai tenaga yang mencukupi untuk meluangkan masa bersama keluarga dan rakan ketika waktu lapang?'],
@@ -235,7 +234,7 @@
     text('#cbi h2',c.cbiTitle); text('#cbi .muted',c.cbiText); document.querySelectorAll('#cbi .card').forEach((card,i)=>{text(`#cbi .card:nth-child(${i+1}) h3`,c.cards[i][0]);text(`#cbi .card:nth-child(${i+1}) p`,c.cards[i][1])});
     text('#about h2',c.beforeTitle); text('#about .muted',c.beforeText); const notes=document.querySelectorAll('#about .notice'); if(notes[0])notes[0].innerHTML=`<strong>${c.seekTitle}</strong><br>${c.seek}`; if(notes[1])notes[1].innerHTML=`<strong>${c.scoreHow}</strong><br>${c.scoreHowText}`;
     text('#details h2',c.printDetails); text('#details .muted',c.printDetailsText); document.querySelectorAll('#details .field-label').forEach((l,i)=>l.textContent=c.fields[i]); document.querySelectorAll('#details input[type=text]').forEach(i=>i.placeholder=c.optional);
-    text('#screening h2',c.nav[3]); text('#screening .muted',c.qText); text('#screening .pill',c.items19); document.querySelectorAll('.scale div').forEach((box,i)=>{const h=box.querySelector('h3'),sp=box.querySelector('span'); if(c.scale[i]){if(h)h.textContent=c.scale[i][0]; if(sp)sp.textContent=c.scale[i][1];}});
+    text('#screening h2',c.nav[3]); text('#screening .muted',c.qText); text('#screening .pill',c.items19); document.querySelectorAll('.scale div').forEach((box,i)=>{const h=box.querySelector('h3'),sp=box.querySelector('span'),v=c.scale[i]; if(!v)return; if(Array.isArray(v)){if(h)h.textContent=v[0]; if(sp)sp.textContent=v[1];} else if(sp){sp.innerHTML=v;}});
     text('#stressors h2',c.stressTitle); text('#stressors .muted',c.stressText); const sl=document.querySelectorAll('#stressors .field-label'); if(sl[0])sl[0].textContent=c.impact; if(sl[1])sl[1].textContent=c.safetyConcern; [...$('impairment').options].forEach((o,i)=>o.textContent=c.impactOpts[i]); [...$('selfHarm').options].forEach((o,i)=>o.textContent=c.safetyOpts[i]);
     text('#output>.title h2',c.outputTitle); text('#output>.title .muted',c.outputText); text('#tab-results',c.tabResults); text('#tab-action',c.tabAction); text('#results h2',c.auto); text('#results .muted',c.autoText); text('#calculateBtn',c.calc); text('#completionNotice',c.complete);
     const next=document.querySelector('.next p'); if(next)next.innerHTML=`<strong>${c.next}</strong> ${c.nextText}`; text('#viewPlanBtn',c.viewPlan); text('#plan h2',c.guided); text('#plan .muted',c.guidedText); text('#plan .pill',c.printReady); text('.own h3',c.otherTitle); text('.own p',c.otherText); text('.own .field-label',c.otherLabel); if($('ownActionPlan'))$('ownActionPlan').placeholder=c.otherPlaceholder; text('#action>.notice',c.finalNote); text('#printBtn',c.printBtn); text('#resetBtn',c.reset); text('#topResetBtn',c.reset); text('#references h2',c.refs); text('#references .muted',c.refsText); text('.footer',c.footer);
@@ -245,7 +244,7 @@
     document.querySelectorAll('.domain').forEach((dom,i)=>{
       const ids=['personal','work','client'], id=ids[i]; const h=dom.querySelector('.domain-head h3'); if(h)h.textContent=domTitle[id][bm?1:0];
       const tag=dom.querySelector('.domain-tag'); if(tag)tag.textContent=bm?['Peribadi','Kerja','Klien'][i]:['Personal','Work','Client'][i];
-      dom.querySelectorAll('.q').forEach((q,j)=>{const strong=q.querySelector('strong'), sub=q.querySelector('span'), type=id==='personal'?'frequency':id==='work'&&j<3?'degree':id==='client'&&j<4?'degree':'frequency'; if(bm){if(strong)strong.textContent=qBM[id][j]+'*'; if(sub)sub.textContent=''; q.querySelectorAll('.answers small').forEach((sm,k)=>sm.textContent=responseLabelBM[type][k]);} else { if(sub)sub.textContent=''; }});
+      dom.querySelectorAll('.q').forEach((q,j)=>{const strong=q.querySelector('strong'), sub=q.querySelector('span'); if(bm){if(strong)strong.textContent=qBM[id][j]+'*'; if(sub)sub.textContent='';} else { if(sub)sub.textContent=''; }});
     });
   }
   function patchStressors(){if(lang()!=='bm')return; document.querySelectorAll('#stressorList .check').forEach(l=>{const sp=l.querySelector('span'); if(sp&&stressBM[sp.textContent])sp.textContent=stressBM[sp.textContent]})}
