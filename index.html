@@ -85,7 +85,7 @@ function questionBlock(){
   domains.forEach(d=>d.qs.forEach((q,i)=>{const raw=Number(state.answers[`${d.id}_${i}`]||0),elevated=raw&&scoreAnswer(raw,!!q[2])>=50;if(elevated)hit[d.id]++}));
   if(!hit.personal&&!hit.work&&!hit.client)return null;
   const add=(en,bmText)=>items.push(bm?bmText:en);
-  add('Your answers suggest that the tiredness should be taken seriously and managed early, without blaming yourself.','Jawapan anda menunjukkan kelesuan ini wajar diberi perhatian awal tanpa menyalahkan diri sendiri.');
+  add('Your answers suggest that the tiredness should be taken seriously and managed early, without blaming yourself.','Jawapan anda menunjukkan burnout ini wajar diberi perhatian awal tanpa menyalahkan diri sendiri.');
   if(hit.personal)add('Begin with recovery that is small and repeatable: protect sleep, regular meals, hydration and brief pauses during the day.','Mulakan pemulihan yang kecil dan boleh diulang: lindungi tidur, makan secara teratur, hidrasi dan rehat ringkas sepanjang hari.');
   if(hit.work)add('Choose one work demand that feels most difficult now, then discuss what can be prioritised, postponed, shared or clarified.','Pilih satu tuntutan kerja yang paling membebankan sekarang, kemudian bincang perkara yang perlu diutamakan, ditangguhkan, dikongsi atau dijelaskan.');
   if(hit.client)add('For emotionally demanding client or patient work, plan a short debrief and recovery pause after difficult interactions.','Untuk kerja klien atau pesakit yang menuntut emosi, rancang perbincangan ringkas dan ruang pemulihan selepas interaksi sukar.');
@@ -113,7 +113,7 @@ function buildPlan(){
     tx('For the next few days, reduce avoidable demands outside work so your body has space to recover.','Untuk beberapa hari akan datang, kurangkan tuntutan luar kerja yang boleh dielakkan supaya badan mempunyai ruang untuk pulih.'),
     tx('Watch for recovery signs: better sleep, steadier mood, clearer thinking and less physical exhaustion.','Perhatikan tanda pemulihan: tidur lebih baik, emosi lebih stabil, fikiran lebih jelas dan keletihan fizikal berkurang.')
   ];
-  if(s.domainScores.personal>=50)indiv.push(tx('If exhaustion persists, worsens or affects daily functioning, arrange support from occupational health, counselling, Klinik Kesihatan or a qualified health professional.','Jika kelesuan berterusan, semakin teruk atau menjejaskan fungsi harian, dapatkan sokongan daripada kesihatan pekerjaan, kaunseling, Klinik Kesihatan atau profesional kesihatan berkelayakan.'));
+  if(s.domainScores.personal>=50)indiv.push(tx('If exhaustion persists, worsens or affects daily functioning, arrange support from occupational health, counselling, Klinik Kesihatan or a qualified health professional.','Jika burnout berterusan, semakin teruk atau menjejaskan fungsi harian, dapatkan sokongan daripada kesihatan pekerjaan, kaunseling, Klinik Kesihatan atau profesional kesihatan berkelayakan.'));
   blocks.push({t:'Individual Recovery Actions',i:'I',items:indiv});
   let work=[
     tx('Prepare one calm conversation about work design. Describe the demand, how it affects functioning and what practical support would help.','Sediakan satu perbincangan tenang tentang reka bentuk kerja. Terangkan tuntutan kerja, kesannya terhadap fungsi dan sokongan praktikal yang diperlukan.'),
@@ -152,7 +152,7 @@ function activate(tab,scroll=false){document.querySelectorAll('[data-tab]').forE
 function bind(){document.addEventListener('change',e=>{let t=e.target;if(t.matches('input[type=radio][data-qid]'))state.answers[t.dataset.qid]=t.value;if(t.matches('#stressorList input[type=checkbox]'))state.stressors=[...document.querySelectorAll('#stressorList input:checked')].map(i=>i.value);if(t.matches('input,select,textarea'))updateResults()});document.addEventListener('input',e=>{if(e.target.matches('input[type=text],textarea')){save();renderPlan();updatePrint()}});document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>activate(b.dataset.tab)));document.querySelectorAll('[data-tab-link]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();activate(a.dataset.tabLink,true)}));$('mobileNav').addEventListener('change',e=>{let v=e.target.value;if(v.startsWith('tab:'))activate(v.replace('tab:',''),true);else document.querySelector(v)?.scrollIntoView({behavior:'smooth',block:'start'})});$('calculateBtn')?.addEventListener('click',updateResults);$('viewPlanBtn').addEventListener('click',()=>activate('action',true));$('printBtn').addEventListener('click',()=>{updateResults();window.print()});$('resetBtn').addEventListener('click',reset);$('topResetBtn')?.addEventListener('click',reset)}
 function init(){renderQ();renderStressors();$('screeningDate').value=new Date().toISOString().slice(0,10);load();bind();activate('results');updateResults()}init();
 </script>
-<script src="i18n.js?v=20260807-urgent-bm-5a4c32d"></script>
+<script src="i18n.js?v=20260808-burnout-bm"></script>
 </body>
 </html>
 

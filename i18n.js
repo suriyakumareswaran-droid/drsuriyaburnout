@@ -83,7 +83,8 @@
       print:['Personal report','Created by','Result Summary','Main Stressors','Screening note','This tool is for individual screening, workplace health education, and guided action planning. It supports early reflection, practical workplace discussion and follow-up.','Suggested review timing','Other Issue Statement','Use Note','Accessed 25 June 2026']
     },
     bm:{
-      title:'Alat Saringan Kelesuan dan Pelan Tindakan Tempat Kerja',
+      title:'Alat Saringan <em>Burnout</em> dan Pelan Tindakan Tempat Kerja',
+      plainTitle:'Alat Saringan Burnout dan Pelan Tindakan Tempat Kerja',
       by:'Dihasilkan oleh Dr Suriya Kumareswaran',
       langA:'English',
       langB:'Bahasa Malaysia',
@@ -94,12 +95,12 @@
       startBtn:'Mula Soal Selidik',
       what:'Apakah CBI?',
       minis:['Soalan','Domain CBI','Cetak / Simpan'],
-      cbiTitle:'Apakah Inventori Kelesuan Copenhagen?',
-      cbiText:'Inventori Kelesuan Copenhagen (CBI) ialah soal selidik berstruktur untuk menilai kelesuan dalam tiga domain praktikal supaya keputusan membantu perancangan tindakan, bukan sekadar memberi satu skor.',
+      cbiTitle:'Apakah Copenhagen Burnout Inventory (CBI)?',
+      cbiText:'Copenhagen Burnout Inventory (CBI) ialah soal selidik berstruktur untuk menilai burnout dalam tiga domain praktikal supaya keputusan membantu perancangan tindakan, bukan sekadar memberi satu skor.',
       cards:[
-        ['Kelesuan Peribadi','Kelesuan fizikal dan emosi secara umum, tanpa mengira puncanya.'],
-        ['Kelesuan Berkaitan Kerja','Kelesuan yang berkait dengan beban kerja, peranan, kawalan, jadual dan reka bentuk kerja.'],
-        ['Kelesuan Berkaitan Klien / Pesakit','Kelesuan yang berkait dengan tugasan berhadapan klien, pesakit atau situasi perkhidmatan yang menuntut emosi.']
+        ['<em>Burnout</em> Peribadi','Keletihan fizikal dan emosi secara umum, tanpa mengira puncanya.'],
+        ['<em>Burnout</em> Berkaitan Kerja','Keletihan yang berkait dengan beban kerja, peranan, kawalan, jadual dan reka bentuk kerja.'],
+        ['<em>Burnout</em> Berkaitan Klien / Pesakit','Keletihan yang berkait dengan tugasan berhadapan klien, pesakit atau situasi perkhidmatan yang menuntut emosi.']
       ],
       beforeTitle:'Sebelum Menggunakan Alat Ini',
       beforeText:'Alat saringan ini membantu refleksi, perbincangan di tempat kerja dan perancangan tindakan awal.',
@@ -126,13 +127,13 @@
       tabResults:'1. Keputusan',
       tabAction:'2. Pelan Tindakan + Cetak',
       auto:'Keputusan Automatik',
-      autoText:'Skor CBI dikira secara automatik untuk menunjukkan domain kelesuan yang paling memerlukan perhatian.',
+      autoText:'Skor CBI dikira secara automatik untuk menunjukkan domain burnout yang paling memerlukan perhatian.',
       calc:'Kira Sekarang',
       complete:'Jawab semua 19 soalan untuk menjana keputusan dan pelan tindakan.',
       overall:'Keutamaan tindakan keseluruhan',
       mainConcern:'Kebimbangan utama',
       urgentMsg:'Saringan ini menunjukkan keperluan tindakan segera kerana kebimbangan keselamatan, pemikiran mencederakan diri, ancaman/keganasan segera atau gangguan fungsi teruk telah dipilih.',
-      resultMsg:'Keputusan saringan ini menunjukkan domain kelesuan yang mendapat skor tertinggi. Skor yang lebih tinggi bermaksud corak kelesuan lebih ketara dalam domain tersebut, maka pelan tindakan memberi tumpuan awal kepada pemulihan praktikal dan sokongan tempat kerja.',
+      resultMsg:'Keputusan saringan ini menunjukkan domain burnout yang mendapat skor tertinggi. Skor yang lebih tinggi bermaksud corak keletihan lebih ketara dalam domain tersebut, maka pelan tindakan memberi tumpuan awal kepada pemulihan praktikal dan sokongan tempat kerja.',
       next:'Seterusnya:',
       nextText:'buka pelan tindakan berpandu, kemudian cetak atau simpan salinan peribadi anda.',
       viewPlan:'Lihat Pelan Tindakan Saya',
@@ -152,7 +153,7 @@
       refsText:'Rujukan yang digunakan untuk membina penerangan, pemarkahan dan pelan tindakan.',
       footer:'Alat ini ialah bantuan sokongan individu. Ia melengkapi, bukan menggantikan, pentaksiran risiko psikososial majikan, nasihat kesihatan pekerjaan atau penilaian profesional kesihatan.',
       bands:{'Low priority':'Keutamaan rendah','Mild priority':'Keutamaan ringan','Moderate priority':'Keutamaan sederhana','High priority':'Keutamaan tinggi','Urgent safety priority':'Tindakan keselamatan segera'},
-      domain:{personal:'Kelesuan Peribadi',work:'Kelesuan Berkaitan Kerja',client:'Kelesuan Berkaitan Klien / Pesakit'},
+      domain:{personal:'Burnout Peribadi',work:'Burnout Berkaitan Kerja',client:'Burnout Berkaitan Klien / Pesakit'},
       action:{
         'Urgent Safety Step':['Langkah Keselamatan Segera','Keselamatan dahulu','Jika keselamatan terjejas, dapatkan bantuan sebelum merancang perubahan kerja.'],
         'Question-Specific Action Plan':['Pelan Tindakan Mengikut Soalan','Ringkasan soalan','Ringkasan pendek jawapan meningkat dan langkah seterusnya.'],
@@ -170,7 +171,7 @@
     work:['Adakah kerja anda meletihkan emosi anda?','Adakah anda berasa lesu upaya disebabkan pekerjaan anda?','Adakah pekerjaan anda menyebabkan anda berasa kecewa?','Adakah anda berasa lesu pada akhir hari bekerja?','Adakah anda berasa letih pada waktu pagi apabila memikirkan satu lagi hari bekerja?','Adakah setiap jam bekerja terasa memenatkan bagi anda?','Adakah anda mempunyai tenaga yang mencukupi untuk meluangkan masa bersama keluarga dan rakan ketika waktu lapang?'],
     client:['Adakah anda berasa sukar untuk berurusan dengan klien atau pesakit?','Adakah urusan dengan klien atau pesakit menyebabkan anda berasa kecewa?','Adakah bekerja dengan klien atau pesakit menghabiskan tenaga anda?','Apabila berurusan dengan klien atau pesakit, adakah anda berasa lebih banyak memberi daripada menerima?','Adakah anda berasa penat atau jemu bekerja dengan klien atau pesakit?','Adakah anda kadangkala tertanya-tanya berapa lama lagi anda mampu meneruskan kerja berhadapan klien atau pesakit?']
   };
-  const domTitle={personal:['Part 1 - Personal Burnout','Bahagian 1 - Kelesuan Peribadi'],work:['Part 2 - Work-Related Burnout','Bahagian 2 - Kelesuan Berkaitan Kerja'],client:['Part 3 - Client Related Burnout','Bahagian 3 - Kelesuan Berkaitan Klien / Pesakit']};
+  const domTitle={personal:['Part 1 - Personal Burnout','Bahagian 1 - Burnout Peribadi'],work:['Part 2 - Work-Related Burnout','Bahagian 2 - Burnout Berkaitan Kerja'],client:['Part 3 - Client Related Burnout','Bahagian 3 - Burnout Berkaitan Klien / Pesakit']};
   const stressBM={'Workload':'Beban kerja','Lack of control':'Kurang kawalan terhadap kerja','Role conflict or unclear role':'Konflik peranan atau peranan tidak jelas','Shift work or overtime':'Kerja syif atau kerja lebih masa','High emotional demand':'Tuntutan emosi yang tinggi','Bullying, harassment, or violence':'Buli, gangguan atau keganasan','Low support':'Sokongan rendah','Resource constraints':'Kekangan sumber','Poor communication':'Komunikasi lemah'};
   const planBM=[
     ['Seek immediate support from a qualified healthcare professional, nearest Emergency Department, Klinik Kesihatan, occupational health service, or local emergency services.','Dapatkan sokongan segera daripada profesional kesihatan, Jabatan Kecemasan terdekat, Klinik Kesihatan, perkhidmatan kesihatan pekerjaan atau perkhidmatan kecemasan setempat.'],
@@ -224,14 +225,14 @@
   function last(el,v){if(el&&el.childNodes.length)el.childNodes[el.childNodes.length-1].nodeValue=v}
   function localizeStatic(){
     const c=C(), bm=lang()==='bm';
-    document.documentElement.lang=bm?'ms':'en'; document.title=c.title;
+    document.documentElement.lang=bm?'ms':'en'; document.title=c.plainTitle||c.title;
     html('.side-credit',`<strong>${c.by}</strong><br><a href="mailto:dr.suriya@moh.gov.my">dr.suriya@moh.gov.my</a>`);
     document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang()));
     [...$('mobileNav').options].forEach((o,i)=>o.textContent=c.mobile[i]||o.textContent);
     document.querySelectorAll('.nav a').forEach((a,i)=>last(a,c.nav[i]||a.textContent));
-    text('.progress span:first-child',c.progress); text('.hero h2',c.title); text('.hero h2 + p',c.hero);
+    text('.progress span:first-child',c.progress); html('.hero h2',c.title); text('.hero h2 + p',c.hero);
     text('.hero-actions .green',c.startBtn); text('.hero-actions .ghost',c.what); document.querySelectorAll('.mini b').forEach((m,i)=>m.textContent=c.minis[i]||m.textContent);
-    text('#cbi h2',c.cbiTitle); text('#cbi .muted',c.cbiText); document.querySelectorAll('#cbi .card').forEach((card,i)=>{text(`#cbi .card:nth-child(${i+1}) h3`,c.cards[i][0]);text(`#cbi .card:nth-child(${i+1}) p`,c.cards[i][1])});
+    text('#cbi h2',c.cbiTitle); text('#cbi .muted',c.cbiText); document.querySelectorAll('#cbi .card').forEach((card,i)=>{html(`#cbi .card:nth-child(${i+1}) h3`,c.cards[i][0]);text(`#cbi .card:nth-child(${i+1}) p`,c.cards[i][1])});
     text('#about h2',c.beforeTitle); text('#about .muted',c.beforeText); const notes=document.querySelectorAll('#about .notice'); if(notes[0])notes[0].innerHTML=`<strong>${c.seekTitle}</strong><br>${c.seek}`; if(notes[1])notes[1].innerHTML=`<strong>${c.scoreHow}</strong><br>${c.scoreHowText}`;
     text('#details h2',c.printDetails); text('#details .muted',c.printDetailsText); document.querySelectorAll('#details .field-label').forEach((l,i)=>l.textContent=c.fields[i]); document.querySelectorAll('#details input[type=text]').forEach(i=>i.placeholder=c.optional);
     text('#screening h2',c.nav[3]); text('#screening .muted',c.qText); text('#screening .pill',c.items19); document.querySelectorAll('.scale div').forEach((box,i)=>{const h=box.querySelector('h3'),sp=box.querySelector('span'),v=c.scale[i]; if(!v)return; if(Array.isArray(v)){if(h)h.textContent=v[0]; if(sp)sp.textContent=v[1];} else if(sp){sp.innerHTML=v;}});
@@ -259,13 +260,13 @@
     const c=C(); if(!document.querySelector('.action'))return;
     document.querySelectorAll('.action').forEach(a=>{const h=a.querySelector('h3'); if(h&&c.action[h.textContent]){const x=c.action[h.textContent]; h.textContent=x[0]; const k=a.querySelector('.kicker'); if(k)k.textContent=x[1]; const p=a.querySelector('.lead'); if(p)p.textContent=x[2];} const sum=a.querySelector('summary'); if(sum)sum.textContent=c.detailsMore;});
     document.querySelectorAll('.visual').forEach(group=>group.querySelectorAll('.va').forEach(tile=>{const icon=tile.querySelector('i'), key=tile.dataset.action; if(icon&&key&&typeof window.stepIcon==='function')icon.innerHTML=window.stepIcon(key); if(lang()==='bm'){const strong=tile.querySelector('strong'), span=tile.querySelector('span'); const hit=key&&visualBM[key]; if(hit){if(strong)strong.textContent=hit[0]; if(span)span.textContent=hit[1];}}}));
-    if(lang()==='bm')document.querySelectorAll('.result-note').forEach(n=>{let h=n.innerHTML;[['Based on:','Berdasarkan:'],['Personal Burnout','Kelesuan Peribadi'],['Work-Related Burnout','Kelesuan Berkaitan Kerja'],['Client / Patient-Related Burnout','Kelesuan Berkaitan Klien / Pesakit'],['Immediate safety, self-harm, threat/violence, or severe functional concern selected','Kebimbangan keselamatan, pemikiran mencederakan diri, ancaman/keganasan atau gangguan fungsi teruk telah dipilih'],['Safety or severe functional concern selected','Kebimbangan keselamatan atau fungsi kerja teruk telah dipilih'],['Other issue statement typed by user','Pernyataan isu lain yang ditaip oleh pengguna'],['Typed issue matched to issue-specific actions','Isu yang ditaip dipadankan dengan tindakan khusus mengikut isu'],['Your answers are converted into a practical action explanation','Jawapan anda ditukar kepada penerangan pelan tindakan yang praktikal'],['Action priority','Keutamaan tindakan'],['suggested review timing','cadangan masa semakan'],['Immediate safety action','tindakan keselamatan segera'],['Immediate review','semakan segera'],['2 to 4 weeks','2 hingga 4 minggu'],['4 to 8 weeks','4 hingga 8 minggu'],['8 to 12 weeks','8 hingga 12 minggu'],['High priority','Keutamaan tinggi'],['Moderate priority','Keutamaan sederhana'],['Mild priority','Keutamaan ringan'],['Low priority','Keutamaan rendah'],['Urgent safety priority','Tindakan keselamatan segera']].forEach(([a,b])=>h=h.replaceAll(a,b));n.innerHTML=h;});
+    if(lang()==='bm')document.querySelectorAll('.result-note').forEach(n=>{let h=n.innerHTML;[['Based on:','Berdasarkan:'],['Personal Burnout','Burnout Peribadi'],['Work-Related Burnout','Burnout Berkaitan Kerja'],['Client / Patient-Related Burnout','Burnout Berkaitan Klien / Pesakit'],['Immediate safety, self-harm, threat/violence, or severe functional concern selected','Kebimbangan keselamatan, pemikiran mencederakan diri, ancaman/keganasan atau gangguan fungsi teruk telah dipilih'],['Safety or severe functional concern selected','Kebimbangan keselamatan atau fungsi kerja teruk telah dipilih'],['Other issue statement typed by user','Pernyataan isu lain yang ditaip oleh pengguna'],['Typed issue matched to issue-specific actions','Isu yang ditaip dipadankan dengan tindakan khusus mengikut isu'],['Your answers are converted into a practical action explanation','Jawapan anda ditukar kepada penerangan pelan tindakan yang praktikal'],['Action priority','Keutamaan tindakan'],['suggested review timing','cadangan masa semakan'],['Immediate safety action','tindakan keselamatan segera'],['Immediate review','semakan segera'],['2 to 4 weeks','2 hingga 4 minggu'],['4 to 8 weeks','4 hingga 8 minggu'],['8 to 12 weeks','8 hingga 12 minggu'],['High priority','Keutamaan tinggi'],['Moderate priority','Keutamaan sederhana'],['Mild priority','Keutamaan ringan'],['Low priority','Keutamaan rendah'],['Urgent safety priority','Tindakan keselamatan segera']].forEach(([a,b])=>h=h.replaceAll(a,b));n.innerHTML=h;});
     if(lang()==='bm')document.querySelectorAll('.details li').forEach(li=>{for(const [en,bm] of planBM){if(li.textContent===en){li.textContent=bm;break}}});
   }
   function patchPrint(){
     const c=C(); const r=$('printReport'); if(!r)return;
     let h=r.innerHTML; if(lang()==='bm'){
-      [['Burnout Screening and Workplace Action Plan Tool',c.title],['Personal report',c.print[0]],['Created by',c.print[1]],['Result Summary',c.print[2]],['Main Stressors',c.print[3]],['Disclaimer',c.print[4]],['Screening note',c.print[4]],['Suggested review timing',c.print[6]],['Other Issue Statement',c.print[7]],['Use Note',c.print[8]],['Name',c.fields[0]],['Work role',c.fields[1]],['Date',c.fields[2]],['Overall action priority',c.overall],['Main concern',c.mainConcern],['Guided Workplace Action Plan',c.guided],['This screening result highlights the burnout domain with the highest score. A higher score means the exhaustion pattern is stronger in that area, so the action plan focuses first on practical recovery and workplace support.',c.resultMsg],['Urgent support is recommended because an immediate safety concern, self-harm concern, immediate threat/violence, or severe functional impairment was selected.',c.urgentMsg],['This tool is for individual screening, workplace health education, and guided action planning. It supports early reflection, practical workplace discussion and follow-up.',c.print[5]],['This report is for individual reflection and workplace support planning. It should complement, not replace, employer psychosocial risk assessment, occupational health advice, or professional healthcare assessment.','Laporan ini adalah untuk refleksi individu dan perancangan sokongan tempat kerja. Gunakan laporan ini bersama proses pentaksiran risiko psikososial majikan, nasihat kesihatan pekerjaan atau penilaian profesional kesihatan apabila diperlukan.'],['Accessed 25 June 2026',c.print[9]]].forEach(([a,b])=>h=h.replaceAll(a,b));
+      [['Burnout Screening and Workplace Action Plan Tool',c.plainTitle||c.title],['Personal report',c.print[0]],['Created by',c.print[1]],['Result Summary',c.print[2]],['Main Stressors',c.print[3]],['Disclaimer',c.print[4]],['Screening note',c.print[4]],['Suggested review timing',c.print[6]],['Other Issue Statement',c.print[7]],['Use Note',c.print[8]],['Name',c.fields[0]],['Work role',c.fields[1]],['Date',c.fields[2]],['Overall action priority',c.overall],['Main concern',c.mainConcern],['Guided Workplace Action Plan',c.guided],['This screening result highlights the burnout domain with the highest score. A higher score means the exhaustion pattern is stronger in that area, so the action plan focuses first on practical recovery and workplace support.',c.resultMsg],['Urgent support is recommended because an immediate safety concern, self-harm concern, immediate threat/violence, or severe functional impairment was selected.',c.urgentMsg],['This tool is for individual screening, workplace health education, and guided action planning. It supports early reflection, practical workplace discussion and follow-up.',c.print[5]],['This report is for individual reflection and workplace support planning. It should complement, not replace, employer psychosocial risk assessment, occupational health advice, or professional healthcare assessment.','Laporan ini adalah untuk refleksi individu dan perancangan sokongan tempat kerja. Gunakan laporan ini bersama proses pentaksiran risiko psikososial majikan, nasihat kesihatan pekerjaan atau penilaian profesional kesihatan apabila diperlukan.'],['Accessed 25 June 2026',c.print[9]]].forEach(([a,b])=>h=h.replaceAll(a,b));
       Object.entries(dict.en.domain).forEach(([k,v])=>h=h.replaceAll(v,c.domain[k])); Object.entries(dict.en.bands).forEach(([k,v])=>h=h.replaceAll(v,c.bands[k])); planBM.forEach(([a,b])=>h=h.replaceAll(a,b));
     }
     r.innerHTML=h;
